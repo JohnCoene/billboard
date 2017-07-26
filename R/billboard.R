@@ -9,12 +9,15 @@ b_board <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
 
   assign("data", data, envir = data_env)
 
+  # axis <- build_x(x)
+
   # forward options using x
   x = list(
     options = list(
       data = list(
         columns = list(),
-        types = list()
+        types = list(),
+        groups = list(list())
       )
     )
   )

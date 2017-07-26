@@ -4,8 +4,14 @@
 \alias{b_line}
 \title{add line}
 \usage{
-b_line(p, serie, name = NULL)
+b_line(p, serie, name = NULL, stack = FALSE)
 }
 \description{
 add line
+}
+\examples{
+mtcars \%>\%
+  b_board() \%>\%
+  b_line(mpg)
+
 }
