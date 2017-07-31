@@ -128,3 +128,57 @@ b_area_spline <- function(p, serie, name = NULL, stack = FALSE){
   if(isTRUE(stack)) p$x$options$data$groups[[1]] <- append(p$x$options$data$groups[[1]], b_stack(serie, name))
   p
 }
+
+#' add scatter
+#'
+#' @examples
+#' mtcars %>%
+#'   b_board() %>%
+#'   b_scatter(mpg)
+#'
+#' @export
+b_scatter <- function(p, serie, name = NULL, stack = FALSE){
+  y <- col_dat(serie, name)
+
+  p$x$options$data$type <- "scatter"
+  p$x$options$data$types <- append(p$x$options$data$types, get_type(serie, name, type = "scatter"))
+  p$x$options$data$columns <- append(p$x$options$data$columns, y)
+  if(isTRUE(stack)) p$x$options$data$groups[[1]] <- append(p$x$options$data$groups[[1]], b_stack(serie, name))
+  p
+}
+
+#' add pie
+#'
+#' @examples
+#' mtcars[1:5,] %>%
+#'   b_board(rownames(.)) %>%
+#'   b_pie(mpg)
+#'
+#' @export
+b_pie <- function(p, serie){
+  y <- pie_dat(serie)
+
+  p$x$options$data$type <- "pie"
+  p$x$options$data$types <- NULL
+  p$x$options$data$groups <- NULL
+  p$x$options$data$columns <- append(p$x$options$data$columns, y)
+  p
+}
+
+#' add donut
+#'
+#' @examples
+#' mtcars[1:5,] %>%
+#'   b_board(rownames(.)) %>%
+#'   b_donut(mpg)
+#'
+#' @export
+b_donut <- function(p, serie){
+  y <- pie_dat(serie)
+
+  p$x$options$data$type <- "donut"
+  p$x$options$data$types <- NULL
+  p$x$options$data$groups <- NULL
+  p$x$options$data$columns <- append(p$x$options$data$columns, y)
+  p
+}

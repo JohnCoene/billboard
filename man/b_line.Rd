@@ -14,4 +14,9 @@ mtcars \%>\%
   b_board() \%>\%
   b_line(mpg)
 
+mtcars \%>\%
+  b_board() \%>\%
+  b_line(mpg, stack = TRUE) \%>\%
+  b_line(drat, stack = TRUE)
+
 }
