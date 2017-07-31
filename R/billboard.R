@@ -5,9 +5,10 @@
 #' @import htmlwidgets
 #'
 #' @export
-b_board <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
+b_board <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL) {
 
   assign("data", data, envir = data_env)
+  if(!is.null(x)) assign("x", x, envir = data_env)
 
   # axis <- build_x(x)
 

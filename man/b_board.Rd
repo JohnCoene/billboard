@@ -4,7 +4,7 @@
 \alias{b_board}
 \title{<Add Title>}
 \usage{
-b_board(data, x, width = NULL, height = NULL, elementId = NULL)
+b_board(data, x = NULL, width = NULL, height = NULL, elementId = NULL)
 }
 \description{
 <Add Description>
