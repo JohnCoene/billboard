@@ -4,7 +4,7 @@
 \alias{b_line}
 \title{add line}
 \usage{
-b_line(p, serie, name = NULL, stack = FALSE)
+b_line(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
 \description{
 add line
@@ -18,5 +18,10 @@ mtcars \%>\%
   b_board() \%>\%
   b_line(mpg, stack = TRUE) \%>\%
   b_line(drat, stack = TRUE)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_line(mpg) \%>\%
+  b_line(drat, axis = "y2")
 
 }

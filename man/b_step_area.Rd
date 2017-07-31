@@ -4,7 +4,7 @@
 \alias{b_step_area}
 \title{add step area}
 \usage{
-b_step_area(p, serie, name = NULL, stack = FALSE)
+b_step_area(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
 \description{
 add step area
@@ -13,5 +13,15 @@ add step area
 mtcars \%>\%
   b_board() \%>\%
   b_step_area(mpg)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_step_area(mpg, stack = TRUE) \%>\%
+  b_step_area(drat, stack = TRUE)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_step_area(mpg) \%>\%
+  b_step_area(drat, axis = "y2")
 
 }

@@ -4,7 +4,7 @@
 \alias{b_area}
 \title{add area}
 \usage{
-b_area(p, serie, name = NULL, stack = FALSE)
+b_area(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
 \description{
 add area

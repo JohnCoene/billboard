@@ -4,7 +4,7 @@
 \alias{b_spline}
 \title{add spline}
 \usage{
-b_spline(p, serie, name = NULL, stack = FALSE)
+b_spline(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
 \description{
 add spline
@@ -13,5 +13,15 @@ add spline
 mtcars \%>\%
   b_board() \%>\%
   b_spline(mpg)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_spline(mpg, stack = TRUE) \%>\%
+  b_spline(drat, stack = TRUE)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_spline(mpg) \%>\%
+  b_spline(drat, axis = "y2")
 
 }

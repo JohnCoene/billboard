@@ -4,7 +4,7 @@
 \alias{b_step}
 \title{add step}
 \usage{
-b_step(p, serie, name = NULL, stack = FALSE)
+b_step(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
 \description{
 add step
@@ -13,5 +13,15 @@ add step
 mtcars \%>\%
   b_board() \%>\%
   b_step(mpg)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_step(mpg, stack = TRUE) \%>\%
+  b_step(drat, stack = TRUE)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_step(mpg) \%>\%
+  b_step(drat, axis = "y2")
 
 }

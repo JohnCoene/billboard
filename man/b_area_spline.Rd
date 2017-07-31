@@ -4,7 +4,7 @@
 \alias{b_area_spline}
 \title{add area spline}
 \usage{
-b_area_spline(p, serie, name = NULL, stack = FALSE)
+b_area_spline(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
 \description{
 add area spline

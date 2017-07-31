@@ -4,7 +4,7 @@
 \alias{b_bar}
 \title{add bar}
 \usage{
-b_bar(p, serie, name = NULL, stack = FALSE)
+b_bar(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
 \description{
 add bar
@@ -13,5 +13,15 @@ add bar
 mtcars \%>\%
   b_board() \%>\%
   b_bar(mpg)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_bar(mpg, stack = TRUE) \%>\%
+  b_bar(drat, stack = TRUE)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_bar(mpg) \%>\%
+  b_bar(drat, axis = "y2")
 
 }

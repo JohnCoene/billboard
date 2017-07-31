@@ -12,6 +12,13 @@ get_type <- function(serie, name = NULL, type){
   types
 }
 
+set_axes <- function(serie, name = NULL, which){
+  n <- ifelse(is.null(name), deparse(substitute(serie, parent.frame())), serie)
+  axis <- list(which)
+  names(axis) <- n
+  axis
+}
+
 col_dat <- function(serie, name = NULL){
   data <- get("data", envir = data_env)
 

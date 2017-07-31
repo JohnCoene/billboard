@@ -4,7 +4,7 @@
 \alias{b_scatter}
 \title{add scatter}
 \usage{
-b_scatter(p, serie, name = NULL, stack = FALSE)
+b_scatter(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
 \description{
 add scatter
