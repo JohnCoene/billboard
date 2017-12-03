@@ -14,4 +14,14 @@ mtcars \%>\%
   b_board() \%>\%
   b_scatter(mpg)
 
+mtcars \%>\%
+  b_board() \%>\%
+  b_scatter(mpg, stack = TRUE) \%>\%
+  b_scatter(drat, stack = TRUE)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_scatter(mpg) \%>\%
+  b_scatter(drat, axis = "y2")
+
 }

@@ -14,4 +14,14 @@ mtcars \%>\%
   b_board() \%>\%
   b_area(mpg)
 
+mtcars \%>\%
+  b_board() \%>\%
+  b_area(mpg, stack = TRUE) \%>\%
+  b_area(drat, stack = TRUE)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_area(mpg) \%>\%
+  b_area(drat, axis = "y2")
+
 }

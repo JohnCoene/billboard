@@ -1,8 +1,21 @@
-build_x <- function(x){
-  data <- get("data", envir = data_env)
+get_cat <- function(){
+  x <- get("x", envir = data_env)
 
-  x <- eval(substitute(x, parent.frame()), data)
-  list(c("x", x))
+  if(inherits(x, "factor") || inherits(x, "character")){
+    "category"
+  } else {
+    "value"
+  }
+}
+
+check_cat <- function(){
+  ifelse(get_cat() == "category", TRUE, FALSE)
+}
+
+cat_x <- function(){
+  x <- get("x", envir = data_env)
+  x <- unique(x)
+  as.list(x)
 }
 
 get_type <- function(serie, name = NULL, type){
@@ -37,7 +50,6 @@ b_stack <- function(serie, name){
 pie_dat <- function(serie){
   data <- get("data", envir = data_env)
   x <- get("x", envir = data_env)
-  x <- eval(substitute(x), data)
 
   serie <- eval(substitute(serie, parent.frame()), data)
 
@@ -45,4 +57,15 @@ pie_dat <- function(serie){
     list(c(x[i], serie[i]))
   }, x, serie)
 
+}
+
+axis_labels <- function(p, text, position = "outer-center", what = "x"){
+  if(missing(text))
+    stop("must pass text")
+
+  opts <- list()
+  opts$text <- text
+  opts$position <- position
+  p$x$options$axis[[what]]$label <- append(p$x$options$axis[[what]]$label, opts)
+  p
 }

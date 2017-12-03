@@ -10,8 +10,12 @@ b_pie(p, serie)
 add pie
 }
 \examples{
-mtcars[1:5,] \%>\%
-  b_board(rownames(.)) \%>\%
+library(dplyr)
+
+mtcars \%>\%
+  mutate(model = rownames(.)) \%>\%
+  slice(1:5) \%>\%
+  b_board(model) \%>\%
   b_pie(mpg)
 
 }

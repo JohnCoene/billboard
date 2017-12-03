@@ -1,16 +1,16 @@
-#' <Add Title>
+#' Create billboard object
 #'
-#' <Add Description>
+#' Create billboard chart.
 #'
 #' @import htmlwidgets
 #'
 #' @export
-b_board <- function(data, x = NULL, width = NULL, height = NULL, elementId = NULL) {
+b_board <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
 
-  assign("data", data, envir = data_env)
-  if(!is.null(x)) assign("x", x, envir = data_env)
-
-  # axis <- build_x(x)
+  if(!missing(data)){
+    assign("data", data, envir = data_env)
+    if(!missing(x)) assign("x", eval(substitute(x), data), envir = data_env)
+  }
 
   # forward options using x
   x = list(
@@ -22,6 +22,15 @@ b_board <- function(data, x = NULL, width = NULL, height = NULL, elementId = NUL
       )
     )
   )
+
+  if (check_cat()) {
+   x$options$axis <- list(
+     x = list(
+       type = get_cat(),
+       categories = cat_x()
+     )
+   )
+  }
 
   # create widget
   htmlwidgets::createWidget(

@@ -14,4 +14,14 @@ mtcars \%>\%
   b_board() \%>\%
   b_area_spline(mpg)
 
+mtcars \%>\%
+  b_board() \%>\%
+  b_area_spline(mpg, stack = TRUE) \%>\%
+  b_area_spline(drat, stack = TRUE)
+
+mtcars \%>\%
+  b_board() \%>\%
+  b_area_spline(mpg) \%>\%
+  b_area_spline(drat, axis = "y2")
+
 }

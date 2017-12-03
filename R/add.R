@@ -257,8 +257,12 @@ b_scatter <- function(p, serie, name = NULL, stack = FALSE, axis = "y"){
 #' add pie
 #'
 #' @examples
-#' mtcars[1:5,] %>%
-#'   b_board(rownames(.)) %>%
+#' library(dplyr)
+#'
+#' mtcars %>%
+#'   mutate(model = rownames(.)) %>%
+#'   slice(1:5) %>%
+#'   b_board(model) %>%
 #'   b_pie(mpg)
 #'
 #' @export
@@ -275,8 +279,12 @@ b_pie <- function(p, serie){
 #' add donut
 #'
 #' @examples
-#' mtcars[1:5,] %>%
-#'   b_board(rownames(.)) %>%
+#' library(dplyr)
+#'
+#' mtcars %>%
+#'   mutate(model = rownames(.)) %>%
+#'   slice(1:5) %>%
+#'   b_board(model) %>%
 #'   b_donut(mpg)
 #'
 #' @export
@@ -287,5 +295,24 @@ b_donut <- function(p, serie){
   p$x$options$data$types <- NULL
   p$x$options$data$groups <- NULL
   p$x$options$data$columns <- append(p$x$options$data$columns, y)
+  p
+}
+
+#' add gauge
+#'
+#' @examples
+#' b_board() %>%
+#'   b_gauge(15)
+#'
+#' @export
+b_gauge <- function(p, value){
+  val <- list(
+    c("data", value)
+  )
+
+  p$x$options$data$type <- "gauge"
+  p$x$options$data$types <- NULL
+  p$x$options$data$groups <- NULL
+  p$x$options$data$columns <- append(p$x$options$data$columns, val)
   p
 }

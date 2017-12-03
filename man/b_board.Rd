@@ -2,10 +2,10 @@
 % Please edit documentation in R/billboard.R
 \name{b_board}
 \alias{b_board}
-\title{<Add Title>}
+\title{Create billboard object}
 \usage{
-b_board(data, x = NULL, width = NULL, height = NULL, elementId = NULL)
+b_board(data, x, width = NULL, height = NULL, elementId = NULL)
 }
 \description{
-<Add Description>
+Create billboard chart.
 }

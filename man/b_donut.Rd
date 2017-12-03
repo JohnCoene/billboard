@@ -10,8 +10,12 @@ b_donut(p, serie)
 add donut
 }
 \examples{
-mtcars[1:5,] \%>\%
-  b_board(rownames(.)) \%>\%
+library(dplyr)
+
+mtcars \%>\%
+  mutate(model = rownames(.)) \%>\%
+  slice(1:5) \%>\%
+  b_board(model) \%>\%
   b_donut(mpg)
 
 }
