@@ -60,12 +60,25 @@ pie_dat <- function(serie){
 }
 
 axis_labels <- function(p, text, position = "outer-center", what = "x"){
-  if(missing(text))
-    stop("must pass text")
+  if(missing(text)) stop("must pass text", call. = FALSE)
 
   opts <- list()
   opts$text <- text
   opts$position <- position
   p$x$options$axis[[what]]$label <- append(p$x$options$axis[[what]]$label, opts)
+  p
+}
+
+viridis_colors <- function(p, palette = "D", ...){
+  p %>%
+    b_colors(colorRampPalette(viridis::viridis(length(p$x$options$data$axes),
+                                               option = palette, ...))(length(p$x$options$data$axes)))
+}
+
+set_grid <- function(p, what = "x", show = TRUE, ...){
+  opts <- list(...)
+  opts$show <- show
+
+  p$x$options$grid[[what]] <- append(p$x$options$grid[[what]], opts)
   p
 }

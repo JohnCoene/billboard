@@ -19,5 +19,8 @@ mtcars %>%
   b_area(qsec) %>% 
   b_spline(wt) %>% 
   b_bar(disp, axis = "y2") %>% 
-  b_step(cyl) 
+  b_step(cyl) %>% 
+  b_xlabel("Miles per galon") %>% 
+  b_brewer("Set1") %>% 
+  b_tooltip(grouped = TRUE)
 ```

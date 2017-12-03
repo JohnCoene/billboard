@@ -26,7 +26,9 @@ b_labels <- function(p, x = -10, y = 10){
 #'   b_board(wt) %>%
 #'   b_spline(mpg) %>%
 #'   b_spline(drat, axis = "y2") %>%
-#'   b_tooltip(grouped = TRUE)
+#'   b_tooltip(grouped = TRUE) %>%
+#'   b_xgrid(show = FALSE) %>%
+#'   b_grid_line(14, "x = 14")
 #'
 #' @export
 b_tooltip <- function(p, show = TRUE, grouped = FALSE, order = "asc", ...){
