@@ -1,65 +1,84 @@
-#' Rotate axis
-#'
-#' Rotate axis
-#'
-#' @param p billboard object as returned by \code{\link{b_board}}.
+#' Show labels
 #'
 #' @examples
-#' mtcars[1:5,] %>%
+#' mtcars %>%
 #'   b_board(wt) %>%
-#'   b_bar(drat) %>%
-#'   b_rotate()
+#'   b_spline(mpg) %>%
+#'   b_spline(drat, axis = "y2") %>%
+#'   b_labels()
 #'
 #' @export
-b_rotate <- function(p){
-  opts <- list()
-  opts$rotated <- TRUE
-  p$x$options$axis <- append(p$x$options$axis, opts)
+b_labels <- function(p, x = -10, y = 10){
+  p$x$options$data$labels <- TRUE
+  p$x$options$data$labels <- list(
+    position = list(
+      x = x,
+      y = y
+    )
+  )
   p
 }
 
-#' Add axis labels
-#'
-#' Add axis labels.
-#'
-#' @param p billboard object as returned by \code{\link{b_board}}.
-#' @param label axis label.
-#' @param position position of label.
-#' @param axis axis to add label to.
-#'
-#' @details
-#' Valid \code{position}:
-#' \itemize{
-#'   \item{\code{inner-top}}
-#'   \item{\code{inner-middle}}
-#'   \item{\code{inner-bottom}}
-#'   \item{\code{outer-top}}
-#'   \item{\code{outer-middle}}
-#'   \item{\code{outer-bottom}}
-#' }
+#' Add tooltip
 #'
 #' @examples
 #' mtcars %>%
 #'   b_board(wt) %>%
-#'   b_spline(cyl) %>%
-#'   b_xaxis_label("Weight")
-#'
-#' mtcars %>%
-#'   b_board() %>%
 #'   b_spline(mpg) %>%
 #'   b_spline(drat, axis = "y2") %>%
-#'   b_xaxis_label("Model") %>%
-#'   b_yaxis_label("Miles per galon") %>%
-#'   b_yaxis_label("Rear axle ratio", axis = "y2")
+#'   b_tooltip(grouped = TRUE)
 #'
-#' @rdname axis_label
 #' @export
-b_xaxis_label <- function(p, label, position = "inner-top"){
-  axis_labels(p, label, position, "x")
+b_tooltip <- function(p, show = TRUE, grouped = FALSE, order = "asc", ...){
+
+  opts <- list(...)
+  opts$show <- show
+  opts$grouped <- grouped
+  opts$order <- order
+
+  p$x$options$tooltip <- opts
+
+  p
 }
 
-#' @rdname axis_label
+#' Add subchart
+#'
+#' Add a subchart.
+#'
+#' @examples
+#' mtcars %>%
+#'   b_board(wt) %>%
+#'   b_area(mpg) %>%
+#'   b_subchart()
+#'
 #' @export
-b_yaxis_label <- function(p, label, position = "inner-top", axis = "y"){
-  axis_labels(p, label, position, axis)
+b_subchart <- function(p, show = TRUE, height = 20, ...){
+
+  opts <- list(...)
+  opts$show <- show
+  opts$size <- list(height = height)
+
+  p$x$options$subchart <- opts
+  p
+}
+
+#' Allow zoom
+#'
+#' Add zooming.
+#'
+#' @examples
+#' mtcars %>%
+#'   b_board(wt) %>%
+#'   b_area(mpg) %>%
+#'   b_zoom()
+#'
+#' @export
+b_zoom <- function(p, enable = TRUE, rescale = FALSE, ...){
+
+  opts <- list(...)
+  opts$enabled <- enable
+  opts$rescale <- rescale
+
+  p$x$options$zoom <- opts
+  p
 }
