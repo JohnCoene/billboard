@@ -11,18 +11,24 @@ devtools::install_github("JohnCoene/billboard")
 
 ## Example
 
+Includes but is not limited to:
+
 ```r
 library(billboard)
 
 mtcars %>% 
-  b_board(mpg) %>% 
-  b_area(qsec) %>% 
+  b_board(mpg) %>%
   b_spline(wt) %>% 
   b_bar(disp, axis = "y2") %>% 
   b_step(cyl) %>% 
+  b_area(qsec) %>% 
+  b_scatter(hp, axis = "y2") %>% 
   b_xlabel("Miles per galon") %>% 
-  b_brewer("Set1") %>% 
-  b_tooltip(grouped = TRUE)
+  b_brewer("Accent") %>% 
+  b_tooltip(grouped = TRUE) %>% 
+  b_grid_line(9, "Marked") %>% 
+  b_grid_line(17, "avg (maybe)", axis = "y") %>% 
+  b_region("x", 1, 4,)
 ```
 
 ## Functions
