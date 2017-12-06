@@ -21,8 +21,19 @@ b_inferno(p, ...)
 
 b_magma(p, ...)
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{colors}{colors to use.}
+
+\item{...}{any other parameter.}
+
+\item{pal}{\code{RColorBrewer} color palette.}
+
+\item{n}{number of colors.}
+}
 \description{
-Customise colors
+Customise colors.
 }
 \examples{
 mtcars \%>\%

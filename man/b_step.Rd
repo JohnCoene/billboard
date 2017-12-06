@@ -2,12 +2,23 @@
 % Please edit documentation in R/add.R
 \name{b_step}
 \alias{b_step}
-\title{add step}
+\title{Add step}
 \usage{
 b_step(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{serie}{column of values to plot.}
+
+\item{name}{name of serie.}
+
+\item{stack}{set to stack.}
+
+\item{axis}{axis to plot on, see examples.}
+}
 \description{
-add step
+Add a step chart.
 }
 \examples{
 mtcars \%>\%

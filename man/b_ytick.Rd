@@ -6,8 +6,17 @@
 \usage{
 b_ytick(p, axis = "y", count = NULL, outer = TRUE)
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{axis}{target axis.}
+
+\item{count}{set to count.}
+
+\item{outer}{set to position outside chart.}
+}
 \description{
-Customise Y axis ticks
+Customise Y axis ticks.
 }
 \examples{
 mtcars \%>\%

@@ -6,14 +6,27 @@
 \usage{
 b_tooltip(p, show = TRUE, grouped = FALSE, order = "asc", ...)
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{show}{set to show tooltip.}
+
+\item{grouped}{set if tooltip is grouped or not for the data points.}
+
+\item{order}{set tooltip data display order.}
+
+\item{...}{any other parameter.}
+}
 \description{
-Add tooltip
+Add a tooltip.
 }
 \examples{
 mtcars \%>\%
   b_board(wt) \%>\%
   b_spline(mpg) \%>\%
   b_spline(drat, axis = "y2") \%>\%
-  b_tooltip(grouped = TRUE)
+  b_tooltip(grouped = TRUE) \%>\%
+  b_xgrid(show = FALSE) \%>\%
+  b_grid_line(14, "x = 14")
 
 }

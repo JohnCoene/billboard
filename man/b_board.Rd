@@ -6,6 +6,15 @@
 \usage{
 b_board(data, x, width = NULL, height = NULL, elementId = NULL)
 }
+\arguments{
+\item{data}{data.frame containing data to plot.}
+
+\item{x}{variable column.}
+
+\item{width, height}{dimensions of chart.}
+
+\item{elementId}{id of div containing chart.}
+}
 \description{
 Create billboard chart.
 }

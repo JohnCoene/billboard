@@ -2,15 +2,37 @@
 % Please edit documentation in R/add.R
 \name{b_gauge}
 \alias{b_gauge}
-\title{add gauge}
+\title{Add gauge}
 \usage{
-b_gauge(p, value)
+b_gauge(p, value, full.circle = FALSE, label = list(), expand = TRUE,
+  min = 0, max = 100, start.angle = (-1 * pi/2), units = NULL,
+  width = NULL)
+}
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{value}{value to gauge.}
+
+\item{full.circle}{show full circle as donut. When set to 'true',
+the max label will not be showed due to start and end points are same location.}
+
+\item{label}{label settings as list.}
+
+\item{expand}{set to expand on hover.}
+
+\item{min, max}{minimum and maxmum values.}
+
+\item{start.angle}{gauge orientation.}
+
+\item{units}{set units of gauge.}
+
+\item{width}{set width of gauge.}
 }
 \description{
-add gauge
+Add a gauge.
 }
 \examples{
 b_board() \%>\%
-  b_gauge(15)
+  b_gauge(15, units = "$")
 
 }

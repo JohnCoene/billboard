@@ -8,8 +8,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
-  dplyr,
   htmlwidgets,
   RColorBrewer,
-  viridis
+  viridis,
+  magrittr
 RoxygenNote: 6.0.1
+Suggests: dplyr

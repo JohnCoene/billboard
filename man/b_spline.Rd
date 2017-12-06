@@ -2,12 +2,23 @@
 % Please edit documentation in R/add.R
 \name{b_spline}
 \alias{b_spline}
-\title{add spline}
+\title{Add spline}
 \usage{
 b_spline(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{serie}{column of values to plot.}
+
+\item{name}{name of serie.}
+
+\item{stack}{set to stack.}
+
+\item{axis}{axis to plot on, see examples.}
+}
 \description{
-add spline
+Add a spline.
 }
 \examples{
 mtcars \%>\%

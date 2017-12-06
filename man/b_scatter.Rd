@@ -2,12 +2,25 @@
 % Please edit documentation in R/add.R
 \name{b_scatter}
 \alias{b_scatter}
-\title{add scatter}
+\title{Add scatter}
 \usage{
-b_scatter(p, serie, name = NULL, stack = FALSE, axis = "y")
+b_scatter(p, serie, name = NULL, stack = FALSE, axis = "y", r = 2.5)
+}
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{serie}{column of values to plot.}
+
+\item{name}{name of serie.}
+
+\item{stack}{set to stack.}
+
+\item{axis}{axis to plot on, see examples.}
+
+\item{r}{point radius.}
 }
 \description{
-add scatter
+Add points.
 }
 \examples{
 mtcars \%>\%

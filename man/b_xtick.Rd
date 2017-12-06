@@ -7,8 +7,29 @@
 b_xtick(p, centered = TRUE, count = NULL, culling = NULL, fit = TRUE,
   multiline = TRUE, outer = TRUE, rotate = 0, width = NULL, ...)
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{centered}{set to center.}
+
+\item{count}{set to count.}
+
+\item{culling}{set to trim.}
+
+\item{fit}{set to fit.}
+
+\item{multiline}{set to spread on multiple lines.}
+
+\item{outer}{set to position outside chart.}
+
+\item{rotate}{degree.}
+
+\item{width}{width of axis.}
+
+\item{...}{any other parameter.}
+}
 \description{
-Customise X axis ticks
+Customise X axis ticks.
 }
 \examples{
 library(dplyr)

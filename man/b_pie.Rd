@@ -2,12 +2,23 @@
 % Please edit documentation in R/add.R
 \name{b_pie}
 \alias{b_pie}
-\title{add pie}
+\title{Add pie}
 \usage{
-b_pie(p, serie)
+b_pie(p, serie, label = list(), expand = TRUE, pad.angle = 0)
+}
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{serie}{name of serie to plot.}
+
+\item{label}{label parameters as list.}
+
+\item{expand}{set to expand on hover.}
+
+\item{pad.angle}{set padding between data.}
 }
 \description{
-add pie
+Add a pie chart.
 }
 \examples{
 library(dplyr)

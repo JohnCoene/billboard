@@ -7,7 +7,7 @@
 b_rotate(p)
 }
 \arguments{
-\item{p}{billboard object as returned by \code{\link{b_board}}.}
+\item{p}{an object of class \code{billboard}.}
 }
 \description{
 Rotate axis

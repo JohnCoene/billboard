@@ -2,12 +2,28 @@
 % Please edit documentation in R/add.R
 \name{b_step_area}
 \alias{b_step_area}
-\title{add step area}
+\title{Add step area}
 \usage{
-b_step_area(p, serie, name = NULL, stack = FALSE, axis = "y")
+b_step_area(p, serie, name = NULL, stack = FALSE, axis = "y",
+  zerobased = TRUE, above = FALSE)
+}
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{serie}{column of values to plot.}
+
+\item{name}{name of serie.}
+
+\item{stack}{set to stack.}
+
+\item{axis}{axis to plot on, see examples.}
+
+\item{zerobased}{set if min or max value will be 0 on bar chart.}
+
+\item{above}{set to fill area above.}
 }
 \description{
-add step area
+Add a step-area.
 }
 \examples{
 mtcars \%>\%

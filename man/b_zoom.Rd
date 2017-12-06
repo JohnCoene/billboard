@@ -6,6 +6,15 @@
 \usage{
 b_zoom(p, enable = TRUE, rescale = FALSE, ...)
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{enable}{set to enable.}
+
+\item{rescale}{set to rescale.}
+
+\item{...}{any other parameter.}
+}
 \description{
 Add zooming.
 }

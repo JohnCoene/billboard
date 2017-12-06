@@ -7,6 +7,23 @@
 b_yaxis(p, axis = "y", show = TRUE, center = NULL, inner = FALSE,
   inverted = FALSE, min = NULL, max = NULL, ...)
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{axis}{axis to customise.}
+
+\item{show}{set to show.}
+
+\item{center}{customise center.}
+
+\item{inner}{set to show inside chart.}
+
+\item{inverted}{set to invert axis.}
+
+\item{min, max}{minimum and maximum.}
+
+\item{...}{any other parameter.}
+}
 \description{
 Cutomise y and y2 axis.
 }

@@ -2,6 +2,11 @@
 #'
 #' Create billboard chart.
 #'
+#' @param data data.frame containing data to plot.
+#' @param x variable column.
+#' @param width,height dimensions of chart.
+#' @param elementId id of div containing chart.
+#'
 #' @import htmlwidgets
 #'
 #' @export

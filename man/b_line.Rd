@@ -2,12 +2,26 @@
 % Please edit documentation in R/add.R
 \name{b_line}
 \alias{b_line}
-\title{add line}
+\title{Add line}
 \usage{
-b_line(p, serie, name = NULL, stack = FALSE, axis = "y")
+b_line(p, serie, name = NULL, stack = FALSE, axis = "y",
+  connect = FALSE)
+}
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{serie}{column of values to plot.}
+
+\item{name}{name of serie.}
+
+\item{stack}{set to stack.}
+
+\item{axis}{axis to plot on, see examples.}
+
+\item{connect}{set if null data point will be connected or not.}
 }
 \description{
-add line
+Add a line.
 }
 \examples{
 mtcars \%>\%

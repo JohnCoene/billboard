@@ -2,12 +2,28 @@
 % Please edit documentation in R/add.R
 \name{b_donut}
 \alias{b_donut}
-\title{add donut}
+\title{Add donut}
 \usage{
-b_donut(p, serie)
+b_donut(p, serie, label = list(), expand = TRUE, width = NULL,
+  title = "", pad.angle = 0)
+}
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{serie}{name of serie to plot.}
+
+\item{label}{label parameters as list.}
+
+\item{expand}{set to expand on hover.}
+
+\item{width}{width of donut.}
+
+\item{title}{donut title}
+
+\item{pad.angle}{set padding between data.}
 }
 \description{
-add donut
+Add a donut (chart).
 }
 \examples{
 library(dplyr)

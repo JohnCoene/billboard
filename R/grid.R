@@ -1,6 +1,17 @@
 #' Customise grid
 #'
-#' Add and customise grid
+#' Add and customise grid.
+#'
+#' @inheritParams p
+#' @inheritParams three_dots
+#' @param show set to show.
+#' @param focus show grids when focus.
+#' @param lines show lines.
+#' @param value axis value.
+#' @param label label of line.
+#' @param axis axis to draw on.
+#' @param class \code{CSS} class.
+#' @param position line position.
 #'
 #' @examples
 #' mtcars %>%
@@ -54,6 +65,7 @@ b_grid_line <- function(p, value, label, axis = "x", position = NULL, class = NU
   if(missing(value) || missing(label))
     stop("must pass value and label", call. = FALSE)
 
+  opts <- list()
   opts$value <- value
   opts$text <- label
   if(!is.null(position)) opts$position <- position

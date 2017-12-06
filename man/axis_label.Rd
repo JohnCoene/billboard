@@ -16,7 +16,7 @@ b_ylabel(p, label, position = "inner-top", axis = "y")
 
 \item{position}{position of label.}
 
-\item{axis}{axis to add label to.}
+\item{axis}{axis to plot on.}
 }
 \description{
 Add axis labels.

@@ -2,7 +2,7 @@
 #'
 #' Rotate axis
 #'
-#' @param p billboard object as returned by \code{\link{b_board}}.
+#' @inheritParams p
 #'
 #' @examples
 #' mtcars[1:5,] %>%
@@ -25,7 +25,7 @@ b_rotate <- function(p){
 #' @param p billboard object as returned by \code{\link{b_board}}.
 #' @param label axis label.
 #' @param position position of label.
-#' @param axis axis to add label to.
+#' @param axis axis to plot on.
 #'
 #' @details
 #' Valid \code{position}:
@@ -68,6 +68,13 @@ b_ylabel <- function(p, label, position = "inner-top", axis = "y"){
 #'
 #' Customise charts' axis.
 #'
+#' @inheritParams p
+#' @inheritParams three_dots
+#' @param show set to show axis.
+#' @param height height of axis.
+#' @param min,max minimum and maximum.
+#' @param padding axis padding.
+#'
 #' @examples
 #' mtcars %>%
 #'   b_board(wt) %>%
@@ -93,6 +100,15 @@ b_xaxis <- function(p, show = TRUE, height = NULL, min  = NULL, max = NULL, padd
 #' Customise y axis
 #'
 #' Cutomise y and y2 axis.
+#'
+#' @inheritParams p
+#' @inheritParams three_dots
+#' @param axis axis to customise.
+#' @param show set to show.
+#' @param center customise center.
+#' @param inner set to show inside chart.
+#' @param inverted set to invert axis.
+#' @param min,max minimum and maximum.
 #'
 #' @examples
 #' mtcars %>%
@@ -121,6 +137,19 @@ b_yaxis <- function(p, axis = "y", show = TRUE, center = NULL, inner = FALSE, in
 }
 
 #' Customise X axis ticks
+#'
+#' Customise X axis ticks.
+#'
+#' @inheritParams p
+#' @inheritParams three_dots
+#' @param centered set to center.
+#' @param count set to count.
+#' @param culling set to trim.
+#' @param fit set to fit.
+#' @param multiline set to spread on multiple lines.
+#' @param outer set to position outside chart.
+#' @param rotate degree.
+#' @param width width of axis.
 #'
 #' @examples
 #' library(dplyr)
@@ -155,6 +184,13 @@ b_xtick <- function(p, centered = TRUE, count = NULL, culling = NULL, fit = TRUE
 }
 
 #' Customise Y axis ticks
+#'
+#' Customise Y axis ticks.
+#'
+#' @inheritParams p
+#' @param axis target axis.
+#' @param count set to count.
+#' @param outer set to position outside chart.
 #'
 #' @examples
 #' mtcars %>%

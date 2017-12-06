@@ -1,5 +1,13 @@
 #' Customise legend
 #'
+#' @inheritParams p
+#' @inheritParams three_dots
+#' @param show set to show.
+#' @param position legend position.
+#' @param equally set to all items have same width size.
+#' @param padding legend padding.
+#' @param width,height dimensions.
+#'
 #' @examples
 #' mtcars %>%
 #'   b_board(wt) %>%

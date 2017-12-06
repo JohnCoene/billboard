@@ -7,6 +7,19 @@
 b_xaxis(p, show = TRUE, height = NULL, min = NULL, max = NULL,
   padding = NULL, ...)
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{show}{set to show axis.}
+
+\item{height}{height of axis.}
+
+\item{min, max}{minimum and maximum.}
+
+\item{padding}{axis padding.}
+
+\item{...}{any other parameter.}
+}
 \description{
 Customise charts' axis.
 }

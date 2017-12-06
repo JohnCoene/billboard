@@ -1,5 +1,13 @@
 #' Customise colors
 #'
+#' Customise colors.
+#'
+#' @inheritParams p
+#' @inheritParams three_dots
+#' @param colors colors to use.
+#' @param pal \code{RColorBrewer} color palette.
+#' @param n number of colors.
+#'
 #' @examples
 #' mtcars %>%
 #'   b_board(mpg) %>%
@@ -22,6 +30,8 @@
 #'
 #' p %>%
 #'   b_plasma()
+#'
+#' @importFrom grDevices colorRampPalette
 #'
 #' @rdname color
 #' @export

@@ -7,6 +7,21 @@
 b_legend(p, show = TRUE, position = "bottom", equally = FALSE,
   padding = 0, width = 10, height = 10, ...)
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{show}{set to show.}
+
+\item{position}{legend position.}
+
+\item{equally}{set to all items have same width size.}
+
+\item{padding}{legend padding.}
+
+\item{width, height}{dimensions.}
+
+\item{...}{any other parameter.}
+}
 \description{
 Customise legend
 }

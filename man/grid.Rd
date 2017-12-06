@@ -15,8 +15,29 @@ b_ygrid(p, show = TRUE, ...)
 
 b_grid_line(p, value, label, axis = "x", position = NULL, class = NULL)
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{focus}{show grids when focus.}
+
+\item{lines}{show lines.}
+
+\item{show}{set to show.}
+
+\item{...}{any other parameter.}
+
+\item{value}{axis value.}
+
+\item{label}{label of line.}
+
+\item{axis}{axis to draw on.}
+
+\item{position}{line position.}
+
+\item{class}{\code{CSS} class.}
+}
 \description{
-Add and customise grid
+Add and customise grid.
 }
 \examples{
 mtcars \%>\%

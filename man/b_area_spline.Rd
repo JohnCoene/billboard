@@ -2,12 +2,23 @@
 % Please edit documentation in R/add.R
 \name{b_area_spline}
 \alias{b_area_spline}
-\title{add area spline}
+\title{Add area spline}
 \usage{
 b_area_spline(p, serie, name = NULL, stack = FALSE, axis = "y")
 }
+\arguments{
+\item{p}{an object of class \code{billboard}.}
+
+\item{serie}{column of values to plot.}
+
+\item{name}{name of serie.}
+
+\item{stack}{set to stack.}
+
+\item{axis}{axis to plot on, see examples.}
+}
 \description{
-add area spline
+Add an area spline.
 }
 \examples{
 mtcars \%>\%
