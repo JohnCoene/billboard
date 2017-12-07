@@ -59,6 +59,7 @@ mtcars %>%
 * `b_resize` 
 * `b_rotate`
 * `b_scatter`
+* `b_setx`
 * `b_size`
 * `b_spline` 
 * `b_step`

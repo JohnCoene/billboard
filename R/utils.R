@@ -42,6 +42,14 @@ col_dat <- function(serie, name = NULL){
   list(c(name, serie))
 }
 
+setx_dat <- function(serie){
+  data <- get("data", envir = data_env)
+  
+  serie <- eval(substitute(serie, parent.frame()), data)
+  
+  list(serie)
+}
+
 b_stack <- function(serie, name){
   if(is.null(name)) name <- deparse(substitute(serie, parent.frame()))
   name

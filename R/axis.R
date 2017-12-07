@@ -210,3 +210,47 @@ b_ytick <- function(p, axis = "y", count = NULL, outer = TRUE){
   p$x$options$axis[[axis]]$tick <- append(p$x$options$axis[[axis]]$tick, opts)
   p
 }
+
+#' Define X axis
+#'
+#' Define X axis, pipe it after all series.
+#'
+#' @inheritParams p
+#' @param serie x axis.
+#'
+#' @examples
+#' library(dplyr)
+#' 
+#' # this makes no sense, it's just an example.
+#' mtcars %>%
+#'   #' mtcars %>%
+#'   group_by(wt) %>%
+#'   summarise(
+#'     mpg = sum(mpg),
+#'     drat = mean(drat)
+#'   ) %>%  
+#'   b_board(wt) %>%
+#'   b_line(mpg) %>%
+#'   b_line(drat) %>%
+#'   b_setx(wt)
+#'   
+#' @details pipe if after all series.
+#'
+#' @export
+b_setx <- function(p, serie){
+  
+  opts <- list()
+  y <- col_dat(serie, "b_xaxis")
+  
+  data <- get("data", envir = data_env)
+  serie <- eval(substitute(serie), data)
+  
+  series <- names(p$x$options$data$types)
+  xs <- as.list(rep("b_xaxis", length(series)))
+  names(xs) <- series
+
+  p$x$options$data$xs <- xs
+  p$x$options$data$columns <- append(p$x$options$data$columns, y)
+  p
+}
+
