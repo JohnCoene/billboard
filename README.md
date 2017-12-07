@@ -2,6 +2,8 @@
 
 [billboard.js](https://naver.github.io/billboard.js) for R.
 
+![Customise all the things](billboard.png)
+
 ## Installation
 
 ``` r
