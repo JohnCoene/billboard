@@ -1,8 +1,12 @@
 get_cat <- function(){
-  x <- get("x", envir = data_env)
+  x <- tryCatch(get("x", envir = data_env), error = function(e) e)
 
-  if(inherits(x, "factor") || inherits(x, "character")){
-    "category"
+  if(!is(x, "error")){
+    if(inherits(x, "factor") || inherits(x, "character")){
+      "category"
+    } else {
+      "value"
+    }
   } else {
     "value"
   }
@@ -19,14 +23,14 @@ cat_x <- function(){
 }
 
 get_type <- function(serie, name = NULL, type){
-  n <- ifelse(is.null(name), deparse(substitute(serie, parent.frame())), serie)
+  n <- ifelse(is.null(name), deparse(substitute(serie, parent.frame())), name)
   types <- list(type)
   names(types) <- n
   types
 }
 
 set_axes <- function(serie, name = NULL, which){
-  n <- ifelse(is.null(name), deparse(substitute(serie, parent.frame())), serie)
+  n <- ifelse(is.null(name), deparse(substitute(serie, parent.frame())), name)
   axis <- list(which)
   names(axis) <- n
   axis
