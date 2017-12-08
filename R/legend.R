@@ -3,10 +3,17 @@
 #' @inheritParams p
 #' @inheritParams three_dots
 #' @param show set to show.
-#' @param position legend position.
+#' @param position legend position, see details.
 #' @param equally set to all items have same width size.
 #' @param padding legend padding.
 #' @param width,height dimensions.
+#' 
+#' @details Valid \code{position}:
+#' \itemize{
+#'   \item{\code{bottom}}
+#'   \item{\code{right}}
+#'   \item{\code{inset}}
+#' }
 #'
 #' @examples
 #' mtcars %>%
@@ -23,6 +30,9 @@
 #' @export
 b_legend <- function(p, show = TRUE, position = "bottom", equally = FALSE, padding = 0,
                      width = 10, height = 10, ...){
+  
+  if(!position %in% c("inset", "right", "bottom"))
+    stop("invalid position.")
 
   opts <- list(...)
   opts$show <- show
@@ -37,7 +47,7 @@ b_legend <- function(p, show = TRUE, position = "bottom", equally = FALSE, paddi
     height = height
   )
 
-  p$x$options$legend$item$tile <- append(p$x$options$legend$item$tile, tile)
+  p$x$options$legend$item$tile <- tile
 
   p
 }

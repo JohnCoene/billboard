@@ -12,7 +12,7 @@ b_legend(p, show = TRUE, position = "bottom", equally = FALSE,
 
 \item{show}{set to show.}
 
-\item{position}{legend position.}
+\item{position}{legend position, see details.}
 
 \item{equally}{set to all items have same width size.}
 
@@ -24,6 +24,14 @@ b_legend(p, show = TRUE, position = "bottom", equally = FALSE,
 }
 \description{
 Customise legend
+}
+\details{
+Valid \code{position}:
+\itemize{
+  \item{\code{bottom}}
+  \item{\code{right}}
+  \item{\code{inset}}
+}
 }
 \examples{
 mtcars \%>\%
