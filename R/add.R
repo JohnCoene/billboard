@@ -34,7 +34,7 @@ b_line <- function(p, serie, name = NULL, stack = FALSE, axis = "y", connect = F
   if(isTRUE(stack)) p$x$options$data$groups[[1]] <- append(p$x$options$data$groups[[1]], b_stack(serie, name))
   if(axis == "y2") p$x$options$axis$y2$show <- TRUE
 
-  p$x$options$line$connectNul <- connect
+  p$x$options$line$connectNull <- connect
   p
 }
 

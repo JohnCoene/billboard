@@ -1,19 +1,44 @@
 get_cat <- function(){
   x <- tryCatch(get("x", envir = data_env), error = function(e) e)
+  
+  return <- "value"
 
   if(!is(x, "error")){
     if(inherits(x, "factor") || inherits(x, "character")){
-      "category"
-    } else {
-      "value"
+      return <- "category"
+    } else if(inherits(x, "Date") || inherits(x, "POSIXct") || inherits(x, "POSIXlt")){
+      return <- "timeseries"
     }
-  } else {
-    "value"
+  } 
+  
+  return
+}
+
+get_format <- function(){
+  x <- tryCatch(get("x", envir = data_env), error = function(e) e)
+  
+  format <- NULL
+  
+  if(!is(x, "error")){
+    if(inherits(x, "Date")){
+      x <- as.Date(x, format = "%Y-%m-%d")
+      format <- "%Y-%m-%d"
+    } else if(inherits(x, "POSIXct") || inherits(x, "POSIXlt")){
+      x <- as.POSIXct(x, format = "%Y-%m-%d %H:%M:%S")
+      format <- "%Y-%m-%d %H:%M:%S"
+    }
+    assign("x", x, envir = data_env)
   }
+  
+  format
 }
 
 check_cat <- function(){
   ifelse(get_cat() == "category", TRUE, FALSE)
+}
+
+check_time <- function(){
+  ifelse(get_cat() == "timeseries", TRUE, FALSE)
 }
 
 cat_x <- function(){

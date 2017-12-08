@@ -35,6 +35,15 @@ b_board <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
        categories = cat_x()
      )
    )
+  } else if(check_time()){
+    x$options$axis <- list(
+      x = list(
+        type = get_cat(),
+        tick = list(
+          format = get_format()
+        )
+      )
+    )
   }
 
   # create widget

@@ -4,12 +4,10 @@
 \alias{b_setx}
 \title{Define X axis}
 \usage{
-b_setx(p, serie)
+b_setx(p)
 }
 \arguments{
 \item{p}{an object of class \code{billboard}.}
-
-\item{serie}{x axis.}
 }
 \description{
 Define X axis, pipe it after all series.
@@ -31,6 +29,6 @@ mtcars \%>\%
   b_board(wt) \%>\%
   b_line(mpg) \%>\%
   b_line(drat) \%>\%
-  b_setx(wt)
+  b_setx()
   
 }

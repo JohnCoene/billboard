@@ -216,7 +216,6 @@ b_ytick <- function(p, axis = "y", count = NULL, outer = TRUE){
 #' Define X axis, pipe it after all series.
 #'
 #' @inheritParams p
-#' @param serie x axis.
 #'
 #' @examples
 #' library(dplyr)
@@ -232,18 +231,16 @@ b_ytick <- function(p, axis = "y", count = NULL, outer = TRUE){
 #'   b_board(wt) %>%
 #'   b_line(mpg) %>%
 #'   b_line(drat) %>%
-#'   b_setx(wt)
+#'   b_setx()
 #'   
 #' @details pipe if after all series.
 #'
 #' @export
-b_setx <- function(p, serie){
+b_setx <- function(p){
   
   opts <- list()
-  y <- col_dat(serie, "b_xaxis")
-  
-  data <- get("data", envir = data_env)
-  serie <- eval(substitute(serie), data)
+  y <- get("x", envir = data_env)
+  y <- list(c("b_xaxis", as.character(y)))
   
   series <- names(p$x$options$data$types)
   xs <- as.list(rep("b_xaxis", length(series)))
