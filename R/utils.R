@@ -1,6 +1,6 @@
 get_cat <- function(){
   x <- tryCatch(get("x", envir = data_env), error = function(e) e)
-  
+
   return <- "value"
 
   if(!is(x, "error")){
@@ -9,16 +9,16 @@ get_cat <- function(){
     } else if(inherits(x, "Date") || inherits(x, "POSIXct") || inherits(x, "POSIXlt")){
       return <- "timeseries"
     }
-  } 
-  
+  }
+
   return
 }
 
 get_format <- function(){
   x <- tryCatch(get("x", envir = data_env), error = function(e) e)
-  
+
   format <- NULL
-  
+
   if(!is(x, "error")){
     if(inherits(x, "Date")){
       x <- as.Date(x, format = "%Y-%m-%d")
@@ -29,7 +29,7 @@ get_format <- function(){
     }
     assign("x", x, envir = data_env)
   }
-  
+
   format
 }
 
@@ -71,14 +71,6 @@ col_dat <- function(serie, name = NULL){
   list(c(name, serie))
 }
 
-setx_dat <- function(serie){
-  data <- get("data", envir = data_env)
-  
-  serie <- eval(substitute(serie, parent.frame()), data)
-  
-  list(serie)
-}
-
 b_stack <- function(serie, name){
   if(is.null(name)) name <- deparse(substitute(serie, parent.frame()))
   name
@@ -108,7 +100,7 @@ axis_labels <- function(p, text, position = "outer-center", what = "x"){
 
 viridis_colors <- function(p, palette = "D", ...){
   p %>%
-    b_colors(colorRampPalette(viridis::viridis(length(p$x$options$data$axes),
+    b_color(colorRampPalette(viridis::viridis(length(p$x$options$data$axes),
                                                option = palette, ...))(length(p$x$options$data$axes)))
 }
 

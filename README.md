@@ -11,6 +11,8 @@
 devtools::install_github("JohnCoene/billboard")
 ```
 
+## Chart types
+
 ## Example
 
 Includes but is not limited to:
@@ -19,14 +21,14 @@ Includes but is not limited to:
 library(billboard)
 
 mtcars %>% 
-  b_board(mpg) %>%
+  b_board() %>%
   b_spline(wt) %>% 
   b_bar(disp, axis = "y2") %>% 
   b_step(cyl) %>% 
   b_area(qsec) %>% 
   b_scatter(hp, axis = "y2") %>% 
   b_xlabel("Miles per galon") %>% 
-  b_brewer("Accent") %>% 
+  b_color_brewer("Accent") %>% 
   b_tooltip(grouped = TRUE) %>% 
   b_grid_line(9, "Marked") %>% 
   b_grid_line(17, "avg (maybe)", axis = "y") %>% 
@@ -41,8 +43,8 @@ mtcars %>%
 * `b_area_spline`  
 * `b_bar`
 * `b_board`
-* `b_brewer`
-* `b_colors`
+* `b_color`
+* `b_color_brewer`
 * `b_donut`
 * `b_gauge`
 * `b_grid`
@@ -61,7 +63,6 @@ mtcars %>%
 * `b_resize` 
 * `b_rotate`
 * `b_scatter`
-* `b_setx`
 * `b_size`
 * `b_spline` 
 * `b_step`

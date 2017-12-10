@@ -18,3 +18,9 @@ b_board(data, x, width = NULL, height = NULL, elementId = NULL)
 \description{
 Create billboard chart.
 }
+\examples{
+mtcars \%>\%
+  b_board() \%>\%
+  b_line(wt)
+
+}

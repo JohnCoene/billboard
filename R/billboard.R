@@ -9,12 +9,20 @@
 #'
 #' @import htmlwidgets
 #'
+#' @examples
+#' mtcars %>%
+#'   b_board() %>%
+#'   b_line(wt)
+#'
 #' @export
 b_board <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
 
   if(!missing(data)){
     assign("data", data, envir = data_env)
-    if(!missing(x)) assign("x", eval(substitute(x), data), envir = data_env)
+    if(!missing(x)){
+      xp <- eval(substitute(x), data)
+      assign("x", xp, envir = data_env)
+    }
   }
 
   # forward options using x
@@ -35,15 +43,21 @@ b_board <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
        categories = cat_x()
      )
    )
-  } else if(check_time()){
-    x$options$axis <- list(
-      x = list(
-        type = get_cat(),
-        tick = list(
-          format = get_format()
-        )
+  }
+
+  if(exists("xp")){
+
+    x$options$data$x <- "b_xAxIs"
+    if(check_time()){
+      x$options$axis$x$type <- "timeseries"
+      x$options$axis$x$localtime <- FALSE
+      x$options$data$xFormat <- get_format()
+      x$options$axis$x$tick <- list(
+        format = get_format()
       )
-    )
+    }
+
+    x$options$data$columns[[1]] <- c("b_xAxIs", as.character(xp))
   }
 
   # create widget

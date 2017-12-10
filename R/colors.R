@@ -10,32 +10,32 @@
 #'
 #' @examples
 #' mtcars %>%
-#'   b_board(mpg) %>%
+#'   b_board() %>%
 #'   b_area(qsec) %>%
 #'   b_spline(wt) %>%
 #'   b_bar(disp, axis = "y2") %>%
 #'   b_step(cyl) -> p
 #'
 #' p %>%
-#'   b_colors(c("red", "blue", "yellow", "orange"))
+#'   b_color(c("red", "blue", "yellow", "orange"))
 #'
 #' p %>%
-#'   b_brewer("Dark2")
+#'   b_color_brewer("Dark2")
 #'
 #' p %>%
-#'   b_viridis()
+#'   b_color_viridis()
 #'
 #' p %>%
-#'   b_magma()
+#'   b_color_magma()
 #'
 #' p %>%
-#'   b_plasma()
+#'   b_color_plasma()
 #'
 #' @importFrom grDevices colorRampPalette
 #'
 #' @rdname color
 #' @export
-b_colors <- function(p, colors, ...){
+b_color <- function(p, colors, ...){
 
   if(missing(colors))
     stop("must pass colors", call. = FALSE)
@@ -52,38 +52,38 @@ b_colors <- function(p, colors, ...){
 
 #' @rdname color
 #' @export
-b_brewer <- function(p, pal, n = 8, ...){
+b_color_brewer <- function(p, pal, n = 8, ...){
 
   if(missing(pal)) stop("must pass palette name", call. = FALSE)
 
   p %>%
-    b_colors(RColorBrewer::brewer.pal(n, pal, ...))
+    b_color(RColorBrewer::brewer.pal(n, pal, ...))
 }
 
 #' @rdname color
 #' @export
-b_viridis <- function(p, ...){
+b_color_viridis <- function(p, ...){
 
   viridis_colors(p, "D", ...)
 }
 
 #' @rdname color
 #' @export
-b_plasma <- function(p, ...){
+b_color_plasma <- function(p, ...){
 
   viridis_colors(p, "C", ...)
 }
 
 #' @rdname color
 #' @export
-b_inferno <- function(p, ...){
+b_color_inferno <- function(p, ...){
 
   viridis_colors(p, "B", ...)
 }
 
 #' @rdname color
 #' @export
-b_magma <- function(p, ...){
+b_color_magma <- function(p, ...){
 
   viridis_colors(p, "A", ...)
 }
