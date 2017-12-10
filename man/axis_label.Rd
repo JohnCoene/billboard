@@ -22,7 +22,17 @@ b_ylabel(p, label, position = "inner-top", axis = "y")
 Add axis labels.
 }
 \details{
-Valid \code{position}:
+Valid \code{position} for horizontal:
+\itemize{
+  \item{\code{inner-right}}
+  \item{\code{inner-center}}
+  \item{\code{inner-left}}
+  \item{\code{outer-right}}
+  \item{\code{outer-center}}
+  \item{\code{outer-left}}
+}
+
+Valid \code{position} for vertical:
 \itemize{
   \item{\code{inner-top}}
   \item{\code{inner-middle}}
