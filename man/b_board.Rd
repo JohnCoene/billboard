@@ -4,7 +4,7 @@
 \alias{b_board}
 \title{Create billboard object}
 \usage{
-b_board(data, x, width = NULL, height = NULL, elementId = NULL)
+b_board(data, x, width = "100\%", height = NULL, elementId = NULL)
 }
 \arguments{
 \item{data}{data.frame containing data to plot.}

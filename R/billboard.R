@@ -15,7 +15,7 @@
 #'   b_line(wt)
 #'
 #' @export
-b_board <- function(data, x, width = NULL, height = NULL, elementId = NULL) {
+b_board <- function(data, x, width = "100%", height = NULL, elementId = NULL) {
 
   if(!missing(data)){
     assign("data", data, envir = data_env)
