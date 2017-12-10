@@ -30,7 +30,7 @@
 #' p %>%
 #'   b_grid_line(8, "x = 8") %>%
 #'   b_grid_line(25, "x = 25") %>%
-#'   b_grid_line(472, "Max disp", axis = "y")
+#'   b_grid_line(max(mtcars$disp), "Max disp", axis = "y")
 #'
 #' @rdname grid
 #' @export
@@ -66,7 +66,7 @@ b_grid_line <- function(p, value, label, axis = "x", position = NULL, class = NU
     stop("must pass value and label", call. = FALSE)
 
   opts <- list()
-  opts$value <- value
+  opts$value <- eval(value)
   opts$text <- label
   if(!is.null(position)) opts$position <- position
   if(!is.null(class)) opts$class <- class

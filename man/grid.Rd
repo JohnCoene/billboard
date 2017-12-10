@@ -56,6 +56,6 @@ p
 p \%>\%
   b_grid_line(8, "x = 8") \%>\%
   b_grid_line(25, "x = 25") \%>\%
-  b_grid_line(472, "Max disp", axis = "y")
+  b_grid_line(max(mtcars$disp), "Max disp", axis = "y")
 
 }

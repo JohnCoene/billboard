@@ -8,6 +8,7 @@
 #' @param elementId id of div containing chart.
 #'
 #' @import htmlwidgets
+#' @importFrom methods is
 #'
 #' @examples
 #' mtcars %>%

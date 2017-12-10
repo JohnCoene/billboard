@@ -1,3 +1,5 @@
+[![Travis-CI Build Status](https://travis-ci.org/JohnCoene/billboard.svg?branch=master)](https://travis-ci.org/JohnCoene/billboard)
+
 # billboard
 
 [billboard.js](https://naver.github.io/billboard.js) for R.
