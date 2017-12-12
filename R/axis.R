@@ -189,7 +189,7 @@ b_xtick <- function(p, centered = TRUE, count = NULL, culling = NULL, fit = TRUE
   if(!is.null(culling)) opts$culling <- culling
   if(!is.null(width)) opts$width <- width
 
-  p$x$options$axis$x$tick <- append(p$x$options$axis$x$tick, opts)
+  p$x$options$axis$x$tick <- opts
   p
 }
 
@@ -217,6 +217,6 @@ b_ytick <- function(p, axis = "y", count = NULL, outer = TRUE){
   opts$outer <- outer
   if(!is.null(count)) opts$count <- count
 
-  p$x$options$axis[[axis]]$tick <- append(p$x$options$axis[[axis]]$tick, opts)
+  p$x$options$axis[[axis]]$tick <- opts
   p
 }
