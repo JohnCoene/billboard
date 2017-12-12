@@ -99,3 +99,13 @@ renderBillboard <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, billboardOutput, env, quoted = TRUE)
 }
+
+#' @rdname billboard-shiny
+#' @export
+billboardProxy <- function(id, session = shiny::getDefaultReactiveDomain()){
+  
+  proxy <- list(id = id, session = session)
+  class(proxy) <- "billboardProxy"
+  
+  return(proxy)
+}

@@ -7,16 +7,25 @@ HTMLWidgets.widget({
   factory: function(el, width, height) {
 
     // TODO: define shared variables for this instance
+    
+    var chart = null;
 
     return {
 
       renderValue: function(x) {
 
-        // TODO: code to render the widget, e.g.
-        var options = x.options;
-        options.bindto = "#" + el.id;
-        var chart = bb.generate(options);
+        if(chart === null){
+          
+          var options = x.options;
+          options.bindto = "#" + el.id;
+          chart = bb.generate(options);
+          
+        }
 
+      },
+      
+      getChart: function(){
+        return chart;
       },
 
       resize: function(width, height) {
@@ -28,3 +37,31 @@ HTMLWidgets.widget({
     };
   }
 });
+
+function get_b_boardChart(id){
+  
+  // Get the HTMLWidgets object
+  var htmlWidgetsObj = HTMLWidgets.find("#" + id);
+  
+  // Use the getChart method we created to get the underlying C3 chart
+  var bboard;
+  
+  if (typeof htmlWidgetsObj != 'undefined') {
+    bboard = htmlWidgetsObj.getChart();
+  }
+
+  return(bboard);
+}
+
+if (HTMLWidgets.shinyMode) {
+  
+  // data = load
+  Shiny.addCustomMessageHandler('b_zoom_p',
+    function(data) {
+      var chart = get_b_boardChart(data.id);
+      if (typeof chart != 'undefined') {
+        // chart.unload();
+        chart.zoom(data.domain);
+      }
+  });
+}

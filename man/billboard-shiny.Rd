@@ -4,11 +4,14 @@
 \alias{billboard-shiny}
 \alias{billboardOutput}
 \alias{renderBillboard}
+\alias{billboardProxy}
 \title{Shiny bindings for billboard}
 \usage{
 billboardOutput(outputId, width = "100\%", height = "400px")
 
 renderBillboard(expr, env = parent.frame(), quoted = FALSE)
+
+billboardProxy(id, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{outputId}{output variable to read from}
