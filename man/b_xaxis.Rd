@@ -25,9 +25,9 @@ Customise charts' axis.
 }
 \examples{
 mtcars \%>\%
-  b_board(wt) \%>\%
-  b_spline(cyl) \%>\%
-  b_xlabel("Weight") \%>\%
+  b_board(drat) \%>\%
+  b_bar(cyl) \%>\%
+  b_xlabel("Rear Axle ratio") \%>\%
   b_ylabel("Number of cylinders") \%>\%
   b_xaxis(padding = list(left = 1, right = 1))
 

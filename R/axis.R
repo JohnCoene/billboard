@@ -87,9 +87,9 @@ b_ylabel <- function(p, label, position = "inner-top", axis = "y"){
 #'
 #' @examples
 #' mtcars %>%
-#'   b_board(wt) %>%
-#'   b_spline(cyl) %>%
-#'   b_xlabel("Weight") %>%
+#'   b_board(drat) %>%
+#'   b_bar(cyl) %>%
+#'   b_xlabel("Rear Axle ratio") %>%
 #'   b_ylabel("Number of cylinders") %>%
 #'   b_xaxis(padding = list(left = 1, right = 1))
 #'
@@ -97,13 +97,13 @@ b_ylabel <- function(p, label, position = "inner-top", axis = "y"){
 b_xaxis <- function(p, show = TRUE, height = NULL, min  = NULL, max = NULL, padding = NULL, ...){
 
   opts <- list(...)
-  opts$show <- show
   if(!is.null(height)) opts$height <- height
   if(!is.null(padding)) opts$padding <- padding
   if(!is.null(min)) opts$min <- min
   if(!is.null(max)) opts$max <- max
 
-  p$x$options$axis$x <- opts
+  p$x$options$axis$x <- append(p$x$options$axis$x, opts)
+  p$x$options$axis$x$show <- show
   p
 }
 
@@ -135,14 +135,14 @@ b_xaxis <- function(p, show = TRUE, height = NULL, min  = NULL, max = NULL, padd
 b_yaxis <- function(p, axis = "y", show = TRUE, center = NULL, inner = FALSE, inverted = FALSE, min = NULL, max = NULL, ...){
 
   opts <- list(...)
-  opts$show <- show
   opts$inner <- inner
   opts$inverted <- inverted
   if(!is.null(center)) opts$center <- center
   if(!is.null(min)) opts$min <- min
   if(!is.null(max)) opts$max <- max
 
-  p$x$options$axis[[axis]] <- opts
+  p$x$options$axis[[axis]] <- append(p$x$options$axis[[axis]], opts)
+  p$x$options$axis[[axis]]$show <- show
   p
 }
 
@@ -189,7 +189,7 @@ b_xtick <- function(p, centered = TRUE, count = NULL, culling = NULL, fit = TRUE
   if(!is.null(culling)) opts$culling <- culling
   if(!is.null(width)) opts$width <- width
 
-  p$x$options$axis$x$tick <- opts
+  p$x$options$axis$x$tick <- append(p$x$options$axis$x$tick, opts)
   p
 }
 
@@ -217,6 +217,6 @@ b_ytick <- function(p, axis = "y", count = NULL, outer = TRUE){
   opts$outer <- outer
   if(!is.null(count)) opts$count <- count
 
-  p$x$options$axis[[axis]]$tick <- opts
+  p$x$options$axis[[axis]]$tick <- append(p$x$options$axis[[axis]]$tick, opts)
   p
 }
