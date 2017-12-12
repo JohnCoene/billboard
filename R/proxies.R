@@ -18,7 +18,7 @@
 #'      )
 #'     ),
 #'     column(
-#'       3,
+#'       2,
 #'      selectInput(
 #'        "transform",
 #'        "Filter:",
@@ -27,7 +27,7 @@
 #'      )
 #'     ),
 #'     column(
-#'       3,
+#'       2,
 #'      selectInput(
 #'       "focus",
 #'        label = "Focus on data",
@@ -44,7 +44,13 @@
 #'        selected = "y",
 #'        multiple = TRUE
 #'      )
-#'     )
+#'     ),
+#'     column(
+#'       2,
+#'      checkboxInput(
+#'        "region", "Add region", FALSE
+#'      )
+#'    )
 #'   ),
 #'   fluidRow(
 #'     billboardOutput("billboard")
@@ -82,7 +88,14 @@
 #'   
 #'   observeEvent(input$stack, {
 #'     billboardProxy("billboard") %>% 
-#'     b_stack_p(list(list("x", input$stack)))
+#'     b_stack_p(list("x", input$stack))
+#'   })
+#'   
+#'   observeEvent(input$region, {
+#'     if(isTRUE(input$region)){
+#'       billboardProxy("billboard") %>% 
+#'       b_add_region_p(axis = "x", start = 1, end = 40) 
+#'     }
 #'   })
 #' }
 #' 
@@ -138,9 +151,43 @@ b_stack_p <- function(proxy, serie){
   if(missing(serie))
     stop("missing serie")
   
-  data <- list(id = proxy$id, serie = serie)
+  data <- list(id = proxy$id, serie = list(serie))
   
   proxy$session$sendCustomMessage("b_stack_p", data)
+  
+  return(proxy)
+}
+
+#' @rdname proxies
+#' @export
+b_region_p <- function(proxy, axis, start, end, class = NULL){
+  
+  if(missing(axis) || missing(start) || missing(end))
+    stop("missing start, end or axis")
+  
+  l <- list(axis = axis, start = start, end = end)
+  if(!is.null(class)) l$class <- class
+  
+  data <- list(id = proxy$id, opts = l)
+  
+  proxy$session$sendCustomMessage("b_region_p", data)
+  
+  return(proxy)
+}
+
+#' @rdname proxies
+#' @export
+b_add_region_p <- function(proxy, axis, start, end, class = NULL){
+  
+  if(missing(axis) || missing(start) || missing(end))
+    stop("missing start, end or axis")
+  
+  l <- list(axis = axis, start = start, end = end)
+  if(!is.null(class)) l$class <- class
+  
+  data <- list(id = proxy$id, opts = l)
+  
+  proxy$session$sendCustomMessage("b_add_region_p", data)
   
   return(proxy)
 }

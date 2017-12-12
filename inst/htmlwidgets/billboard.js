@@ -91,4 +91,22 @@ if (HTMLWidgets.shinyMode) {
         chart.groups(data.serie);
       }
   });
+  
+  Shiny.addCustomMessageHandler('b_region_p',
+    function(data) {
+      var chart = get_b_boardChart(data.id);
+      if (typeof chart != 'undefined') {
+        // chart.unload();
+        chart.regions(data.opts);
+      }
+  });
+  
+  Shiny.addCustomMessageHandler('b_add_region_p',
+    function(data) {
+      var chart = get_b_boardChart(data.id);
+      if (typeof chart != 'undefined') {
+        // chart.unload();
+        chart.regions.add(data.opts);
+      }
+  });
 }

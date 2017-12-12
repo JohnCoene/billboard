@@ -5,6 +5,8 @@
 \alias{b_focus_p}
 \alias{b_transform_p}
 \alias{b_stack_p}
+\alias{b_region_p}
+\alias{b_add_region_p}
 \title{Zoom}
 \usage{
 b_zoom_p(proxy, domain)
@@ -14,6 +16,10 @@ b_focus_p(proxy, series)
 b_transform_p(proxy, to, serie)
 
 b_stack_p(proxy, serie)
+
+b_region_p(proxy, axis, start, end, class = NULL)
+
+b_add_region_p(proxy, axis, start, end, class = NULL)
 }
 \arguments{
 \item{proxy}{an object of class \code{billboardProxy} as returned by \code{\link{billoardProxy}}.}
@@ -38,7 +44,7 @@ ui <- fluidPage(
      )
     ),
     column(
-      3,
+      2,
      selectInput(
        "transform",
        "Filter:",
@@ -47,7 +53,7 @@ ui <- fluidPage(
      )
     ),
     column(
-      3,
+      2,
      selectInput(
       "focus",
        label = "Focus on data",
@@ -64,7 +70,13 @@ ui <- fluidPage(
        selected = "y",
        multiple = TRUE
      )
-    )
+    ),
+    column(
+      2,
+     checkboxInput(
+       "region", "Add region", FALSE
+     )
+   )
   ),
   fluidRow(
     billboardOutput("billboard")
@@ -102,7 +114,14 @@ server <- function(input, output){
   
   observeEvent(input$stack, {
     billboardProxy("billboard") \%>\% 
-    b_stack_p(list(list("x", input$stack)))
+    b_stack_p(list("x", input$stack))
+  })
+  
+  observeEvent(input$region, {
+    if(isTRUE(input$region)){
+      billboardProxy("billboard") \%>\% 
+      b_region_p(axis = "x", start = 1, end = 40) 
+    }
   })
 }
 
