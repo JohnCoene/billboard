@@ -37,6 +37,51 @@ mtcars %>%
   b_region("x", 1, 4,)
 ```
 
+## Proxies
+
+Features Shiny proxies; functions ending in `_p`.
+
+Proxies:
+
+* `b_zoom_p`
+* `b_focus_p`
+* `b_transform_p`
+* `b_stack_p`
+* `b_region_p`
+* `b_add_region_p`
+
+```r
+libary(shiny)
+library(billboard)
+
+shinyApp(
+  ui = fluidPage(
+    selectInput(
+      "transform",
+      "Change chart type:",
+      choices = c("line", "spline", "area", "area-spline", "scatter", "bar"),
+      selected = "line"
+    ),
+    billboardOutput("b_board")
+  ),
+  server = function(input, output){
+  
+  data <- data.frame(y = runif(25, 1, 25))
+  
+    output$b_board <- renderBillboard({
+      data %>% 
+        b_board() %>% 
+        b_line(y, name = "Values")
+    })
+    
+    observeEvent(input$transform, {
+      billboardProxy("b_board") %>% 
+      b_transform_p(input$transform, "Values")
+    })
+  }
+)
+```
+
 ## Functions
 
 ![Customise all the things](FOO.png)
