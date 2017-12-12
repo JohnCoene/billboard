@@ -103,7 +103,7 @@ b_xaxis <- function(p, show = TRUE, height = NULL, min  = NULL, max = NULL, padd
   if(!is.null(min)) opts$min <- min
   if(!is.null(max)) opts$max <- max
 
-  p$x$options$axis$x <- append(p$x$options$axis$x, opts)
+  p$x$options$axis$x <- opts
   p
 }
 
@@ -142,7 +142,7 @@ b_yaxis <- function(p, axis = "y", show = TRUE, center = NULL, inner = FALSE, in
   if(!is.null(min)) opts$min <- min
   if(!is.null(max)) opts$max <- max
 
-  p$x$options$axis[[axis]] <- append(p$x$options$axis[[axis]], opts)
+  p$x$options$axis[[axis]] <- opts
   p
 }
 

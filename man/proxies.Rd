@@ -120,7 +120,7 @@ server <- function(input, output){
   observeEvent(input$region, {
     if(isTRUE(input$region)){
       billboardProxy("billboard") \%>\% 
-      b_region_p(axis = "x", start = 1, end = 40) 
+      b_add_region_p(axis = "x", start = 1, end = 40) 
     }
   })
 }
