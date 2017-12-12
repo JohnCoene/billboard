@@ -85,6 +85,8 @@ b_board <- function(data, x, width = "100%", height = NULL, elementId = NULL) {
 #' @param env The environment in which to evaluate \code{expr}.
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
+#' @param id target chart id.
+#' @param session shiny session
 #'
 #' @name billboard-shiny
 #'
@@ -103,9 +105,9 @@ renderBillboard <- function(expr, env = parent.frame(), quoted = FALSE) {
 #' @rdname billboard-shiny
 #' @export
 billboardProxy <- function(id, session = shiny::getDefaultReactiveDomain()){
-  
+
   proxy <- list(id = id, session = session)
   class(proxy) <- "billboardProxy"
-  
+
   return(proxy)
 }

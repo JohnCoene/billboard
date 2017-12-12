@@ -1,7 +1,28 @@
 #' Zoom
 #'
-#' @param proxy an object of class \code{billboardProxy} as returned by \code{\link{billoardProxy}}.
+#' @param proxy an object of class \code{billboardProxy} as returned by \code{\link{billboardProxy}}.
 #' @param domain domain to zoom to.
+#' @param data data set.
+#' @param serie,series target series.
+#' @param to transformation target, see details.
+#' @param axis target axis.
+#' @param start,end start and end of region.
+#' @param class \code{CSS} class.
+#' @param x x column.
+#'
+#' @section Proxies:
+#'
+#' \describe{
+#'   \item{`b_zoom_p`}{Zoom on a specific area.}
+#'   \item{`b_focus_p`}{Focus on a particular serie.}
+#'   \item{`b_defocus_p`}{Unfocus from particular serie.}
+#'   \item{`b_transform_p`}{Change charge type.}
+#'   \item{`b_stack_p`}{Stack series.}
+#'   \item{`b_add_region_p`}{Add regions.}
+#'   \item{`b_region_p`}{Define region.}
+#'   \item{`b_flow_p`}{Add rows of data.}
+#' }
+#'
 #'
 #' @examples
 #' \dontrun{

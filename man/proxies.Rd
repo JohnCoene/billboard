@@ -28,13 +28,42 @@ b_add_region_p(proxy, axis, start, end, class = NULL)
 b_flow_p(proxy, data, series, x = NULL)
 }
 \arguments{
-\item{proxy}{an object of class \code{billboardProxy} as returned by \code{\link{billoardProxy}}.}
+\item{proxy}{an object of class \code{billboardProxy} as returned by \code{\link{billboardProxy}}.}
 
 \item{domain}{domain to zoom to.}
+
+\item{to}{transformation target, see details.}
+
+\item{serie, series}{target series.}
+
+\item{axis}{target axis.}
+
+\item{start, end}{start and end of region.}
+
+\item{class}{\code{CSS} class.}
+
+\item{data}{data set.}
+
+\item{x}{x column.}
 }
 \description{
 Zoom
 }
+\section{Proxies}{
+
+
+\describe{
+  \item{`b_zoom_p`}{Zoom on a specific area.}
+  \item{`b_focus_p`}{Focus on a particular serie.}
+  \item{`b_defocus_p`}{Unfocus from particular serie.}
+  \item{`b_transform_p`}{Change charge type.}
+  \item{`b_stack_p`}{Stack series.}
+  \item{`b_add_region_p`}{Add regions.}
+  \item{`b_region_p`}{Define region.}
+  \item{`b_flow_p`}{Add rows of data.}
+}
+}
+
 \examples{
 \dontrun{
 library(shiny)
