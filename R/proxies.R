@@ -9,6 +9,7 @@
 #' @param start,end start and end of region.
 #' @param class \code{CSS} class.
 #' @param x x column.
+#' @param unload series to unload.
 #'
 #' @section Proxies:
 #'
@@ -21,6 +22,7 @@
 #'   \item{`b_add_region_p`}{Add regions.}
 #'   \item{`b_region_p`}{Define region.}
 #'   \item{`b_flow_p`}{Add rows of data.}
+#'   \item{`b_load_p`}{Add series.}
 #' }
 #'
 #'
@@ -86,6 +88,10 @@
 #'        max = 100,
 #'        value = 0
 #'      )
+#'     ),
+#'     column(
+#'       3,
+#'       actionButton("cols", "Add serie")
 #'     )
 #'   )
 #' )
@@ -96,10 +102,16 @@
 #'     y = runif(100, 1, 100),
 #'     z = runif(100, 1, 100))
 #'
-#'   df <- reactive({
+#'   df <- eventReactive(input$add, {
 #'     data.frame(x = runif(input$add, 10, 80),
 #'       y = runif(input$add, 10, 80),
 #'       z = runif(input$add, 10, 80))
+#'   })
+#'
+#'   random_data <- eventReactive(input$cols, {
+#'     df <- data.frame(x = runif(100, 1, 100))
+#'     names(df) <- paste0("col", sample(LETTERS, 1))
+#'     df
 #'   })
 #'
 #'   output$billboard <- renderBillboard({
@@ -140,7 +152,12 @@
 #'
 #'   observeEvent(input$add, {
 #'     billboardProxy("billboard") %>%
-#'     b_flow_p(df(), series = c("x", "y", "z"))
+#'     b_flow_p(df(), names(df()))
+#'   })
+#'
+#'   observeEvent(input$cols, {
+#'     billboardProxy("billboard") %>%
+#'     b_load_p(random_data(), names(random_data()))
 #'   })
 #' }
 #'
@@ -257,22 +274,55 @@ b_flow_p <- function(proxy, data, series, x = NULL){
 
   data <- data[, series]
 
-  build_dat <- function(name, x){
-    c(name, as.character(x))
-  }
+  if(inherits(data, "data.frame")){
+    build_dat <- function(name, x){
+      c(name, as.character(x))
+    }
 
-  data <- mapply(build_dat, names(data), data, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+    data <- mapply(build_dat, names(data), data, SIMPLIFY = FALSE, USE.NAMES = FALSE)
 
-  if(!is.null(x)){
-    xvar <- data[, x]
-    xvar <- c("b_xAxIs", xvar)
-    xvar <- append(xvar, data)
-    data <- xvar
+    if(!is.null(x)){
+      xvar <- data[, x]
+      xvar <- c("b_xAxIs", xvar)
+      xvar <- append(xvar, data)
+      data <- xvar
+    }
   }
 
   msg <- list(id = proxy$id, opts = list(columns = data))
 
   proxy$session$sendCustomMessage("b_flow_p", msg)
+
+  return(proxy)
+}
+
+#' @rdname proxies
+#' @export
+b_load_p <- function(proxy, data, series, unload = NULL){
+
+  if(missing(data) || missing(series))
+    stop("missing data, series")
+
+  data <- data[, series]
+
+  if(inherits(data, "data.frame")){
+    build_dat <- function(name, x){
+      c(name, as.character(x))
+    }
+
+    data <- mapply(build_dat, names(data), data, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+  } else {
+    data <- list(c(series, data))
+  }
+
+  l <- list(columns = data)
+
+  if(!is.null(unload))
+    l$unload <- unload
+
+  msg <- list(id = proxy$id, opts = l)
+
+  proxy$session$sendCustomMessage("b_load_p", msg)
 
   return(proxy)
 }

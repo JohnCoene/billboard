@@ -9,6 +9,7 @@
 \alias{b_region_p}
 \alias{b_add_region_p}
 \alias{b_flow_p}
+\alias{b_load_p}
 \title{Zoom}
 \usage{
 b_zoom_p(proxy, domain)
@@ -26,6 +27,8 @@ b_region_p(proxy, axis, start, end, class = NULL)
 b_add_region_p(proxy, axis, start, end, class = NULL)
 
 b_flow_p(proxy, data, series, x = NULL)
+
+b_load_p(proxy, data, series, unload = NULL)
 }
 \arguments{
 \item{proxy}{an object of class \code{billboardProxy} as returned by \code{\link{billboardProxy}}.}
@@ -45,6 +48,8 @@ b_flow_p(proxy, data, series, x = NULL)
 \item{data}{data set.}
 
 \item{x}{x column.}
+
+\item{unload}{series to unload.}
 }
 \description{
 Zoom
@@ -61,6 +66,7 @@ Zoom
   \item{`b_add_region_p`}{Add regions.}
   \item{`b_region_p`}{Define region.}
   \item{`b_flow_p`}{Add rows of data.}
+  \item{`b_load_p`}{Add series.}
 }
 }
 
@@ -126,6 +132,10 @@ ui <- fluidPage(
        max = 100,
        value = 0
      )
+    ),
+    column(
+      3,
+      actionButton("cols", "Add serie")
     )
   )
 )
@@ -136,10 +146,16 @@ server <- function(input, output){
     y = runif(100, 1, 100),
     z = runif(100, 1, 100))
 
-  df <- reactive({
+  df <- eventReactive(input$add, {
     data.frame(x = runif(input$add, 10, 80),
       y = runif(input$add, 10, 80),
       z = runif(input$add, 10, 80))
+  })
+
+  random_data <- eventReactive(input$cols, {
+    df <- data.frame(x = runif(100, 1, 100))
+    names(df) <- paste0("col", sample(LETTERS, 1))
+    df
   })
 
   output$billboard <- renderBillboard({
@@ -180,7 +196,12 @@ server <- function(input, output){
 
   observeEvent(input$add, {
     billboardProxy("billboard") \%>\%
-    b_flow_p(df(), series = c("x", "y", "z"))
+    b_flow_p(df(), names(df()))
+  })
+
+  observeEvent(input$cols, {
+    billboardProxy("billboard") \%>\%
+    b_load_p(random_data(), names(random_data()))
   })
 }
 
