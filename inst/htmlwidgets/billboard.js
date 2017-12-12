@@ -109,4 +109,22 @@ if (HTMLWidgets.shinyMode) {
         chart.regions.add(data.opts);
       }
   });
+  
+  Shiny.addCustomMessageHandler('b_defocus_p',
+    function(data) {
+      var chart = get_b_boardChart(data.id);
+      if (typeof chart != 'undefined') {
+        // chart.unload();
+        chart.defocus(data.series);
+      }
+  });
+  
+  Shiny.addCustomMessageHandler('b_flow_p',
+    function(data) {
+      var chart = get_b_boardChart(data.id);
+      if (typeof chart != 'undefined') {
+        // chart.unload();
+        chart.flow(data.data);
+      }
+  });
 }

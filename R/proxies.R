@@ -132,6 +132,17 @@ b_focus_p <- function(proxy, series){
 
 #' @rdname proxies
 #' @export
+b_defocus_p <- function(proxy, series = NULL){
+  
+  data <- list(id = proxy$id, series = series)
+  
+  proxy$session$sendCustomMessage("b_defocus_p", data)
+  
+  return(proxy)
+}
+
+#' @rdname proxies
+#' @export
 b_transform_p <- function(proxy, to, serie){
   
   if(missing(serie) || missing(to))
@@ -188,6 +199,22 @@ b_add_region_p <- function(proxy, axis, start, end, class = NULL){
   data <- list(id = proxy$id, opts = l)
   
   proxy$session$sendCustomMessage("b_add_region_p", data)
+  
+  return(proxy)
+}
+
+#' @rdname proxies
+#' @export
+b_flow_p <- function(proxy, data, series, x = NULL){
+  
+  if(missing(data) || missing(series))
+    stop("missing data, series")
+  
+  data <- data[, series]
+  
+  msg <- list(id = proxy$id, opts = data)
+  
+  proxy$session$sendCustomMessage("b_flow_p", msg)
   
   return(proxy)
 }
