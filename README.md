@@ -49,6 +49,7 @@ Proxies:
 * `b_stack_p`
 * `b_region_p`
 * `b_add_region_p`
+* `b_flow_p`
 
 ```r
 libary(shiny)
