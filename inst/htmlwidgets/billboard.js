@@ -64,4 +64,31 @@ if (HTMLWidgets.shinyMode) {
         chart.zoom(data.domain);
       }
   });
+  
+  Shiny.addCustomMessageHandler('b_focus_p',
+    function(data) {
+      var chart = get_b_boardChart(data.id);
+      if (typeof chart != 'undefined') {
+        // chart.unload();
+        chart.focus(data.series);
+      }
+  });
+  
+  Shiny.addCustomMessageHandler('b_transform_p',
+    function(data) {
+      var chart = get_b_boardChart(data.id);
+      if (typeof chart != 'undefined') {
+        // chart.unload();
+        chart.transform(data.params.to, data.params.serie);
+      }
+  });
+  
+  Shiny.addCustomMessageHandler('b_stack_p',
+    function(data) {
+      var chart = get_b_boardChart(data.id);
+      if (typeof chart != 'undefined') {
+        // chart.unload();
+        chart.groups(data.serie);
+      }
+  });
 }
