@@ -73,7 +73,7 @@ ui <- fluidPage(
      selectInput(
       "stack",
        label = "Stack",
-       choices = c("y", "z"),
+       choices = c("x", "y", "z"),
        selected = "y",
        multiple = TRUE
      )
@@ -102,6 +102,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output){
+
   data <- data.frame(x = runif(100, 1, 100),
     y = runif(100, 1, 100),
     z = runif(100, 1, 100))

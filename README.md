@@ -51,6 +51,10 @@ Proxies:
 * `b_add_region_p`
 * `b_flow_p`
 
+### Basic Example
+
+See proxy documentation for more details `?b_flow_p`
+
 ```r
 libary(shiny)
 library(billboard)
