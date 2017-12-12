@@ -3,15 +3,19 @@
 \name{b_zoom_p}
 \alias{b_zoom_p}
 \alias{b_focus_p}
+\alias{b_defocus_p}
 \alias{b_transform_p}
 \alias{b_stack_p}
 \alias{b_region_p}
 \alias{b_add_region_p}
+\alias{b_flow_p}
 \title{Zoom}
 \usage{
 b_zoom_p(proxy, domain)
 
 b_focus_p(proxy, series)
+
+b_defocus_p(proxy, series = NULL)
 
 b_transform_p(proxy, to, serie)
 
@@ -20,6 +24,8 @@ b_stack_p(proxy, serie)
 b_region_p(proxy, axis, start, end, class = NULL)
 
 b_add_region_p(proxy, axis, start, end, class = NULL)
+
+b_flow_p(proxy, data, series, x = NULL)
 }
 \arguments{
 \item{proxy}{an object of class \code{billboardProxy} as returned by \code{\link{billoardProxy}}.}
@@ -32,6 +38,7 @@ Zoom
 \examples{
 \dontrun{
 library(shiny)
+
 ui <- fluidPage(
   fluidRow(
     column(
@@ -39,7 +46,7 @@ ui <- fluidPage(
      sliderInput("zoom",
        "Zoom on a region",
        min = 0,
-       max = 100,
+       max = 150,
        value = 100
      )
     ),
@@ -80,48 +87,70 @@ ui <- fluidPage(
   ),
   fluidRow(
     billboardOutput("billboard")
+  ),
+  fluidRow(
+    column(
+      3,
+     sliderInput("add",
+       "Add rows",
+       min = 0,
+       max = 100,
+       value = 0
+     )
+    )
   )
 )
 
 server <- function(input, output){
-  data <- data.frame(x = runif(100, 1, 100), 
-    y = runif(100, 1, 100), 
+  data <- data.frame(x = runif(100, 1, 100),
+    y = runif(100, 1, 100),
     z = runif(100, 1, 100))
 
+  df <- reactive({
+    data.frame(x = runif(input$add, 10, 80),
+      y = runif(input$add, 10, 80),
+      z = runif(input$add, 10, 80))
+  })
+
   output$billboard <- renderBillboard({
-    data \%>\% 
-      b_board() \%>\% 
-      b_line(x) \%>\% 
-      b_bar(y, stack = TRUE) \%>\% 
+    data \%>\%
+      b_board() \%>\%
+      b_line(x) \%>\%
+      b_bar(y, stack = TRUE) \%>\%
       b_area(z, stack = TRUE) \%>\%
       b_zoom()
   })
-  
+
   observeEvent(input$zoom, {
-    billboardProxy("billboard") \%>\% 
+    billboardProxy("billboard") \%>\%
     b_zoom_p(c(0, input$zoom))
   })
-  
+
   observeEvent(input$transform, {
-    billboardProxy("billboard") \%>\% 
+    billboardProxy("billboard") \%>\%
     b_transform_p(input$transform, "x")
   })
-  
+
   observeEvent(input$focus, {
-    billboardProxy("billboard") \%>\% 
+    billboardProxy("billboard") \%>\%
     b_focus_p(list("x", input$filter))
   })
-  
+
   observeEvent(input$stack, {
-    billboardProxy("billboard") \%>\% 
+    billboardProxy("billboard") \%>\%
     b_stack_p(list("x", input$stack))
   })
-  
+
   observeEvent(input$region, {
     if(isTRUE(input$region)){
-      billboardProxy("billboard") \%>\% 
-      b_add_region_p(axis = "x", start = 1, end = 40) 
+      billboardProxy("billboard") \%>\%
+      b_add_region_p(axis = "x", start = 1, end = 40)
     }
+  })
+
+  observeEvent(input$add, {
+    billboardProxy("billboard") \%>\%
+    b_flow_p(df(), series = c("x", "y", "z"))
   })
 }
 

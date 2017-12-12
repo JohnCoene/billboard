@@ -7,7 +7,7 @@ HTMLWidgets.widget({
   factory: function(el, width, height) {
 
     // TODO: define shared variables for this instance
-    
+
     var chart = null;
 
     return {
@@ -15,15 +15,15 @@ HTMLWidgets.widget({
       renderValue: function(x) {
 
         if(chart === null){
-          
+
           var options = x.options;
           options.bindto = "#" + el.id;
           chart = bb.generate(options);
-          
+
         }
 
       },
-      
+
       getChart: function(){
         return chart;
       },
@@ -39,13 +39,13 @@ HTMLWidgets.widget({
 });
 
 function get_b_boardChart(id){
-  
+
   // Get the HTMLWidgets object
   var htmlWidgetsObj = HTMLWidgets.find("#" + id);
-  
+
   // Use the getChart method we created to get the underlying C3 chart
   var bboard;
-  
+
   if (typeof htmlWidgetsObj != 'undefined') {
     bboard = htmlWidgetsObj.getChart();
   }
@@ -54,7 +54,7 @@ function get_b_boardChart(id){
 }
 
 if (HTMLWidgets.shinyMode) {
-  
+
   // data = load
   Shiny.addCustomMessageHandler('b_zoom_p',
     function(data) {
@@ -64,7 +64,7 @@ if (HTMLWidgets.shinyMode) {
         chart.zoom(data.domain);
       }
   });
-  
+
   Shiny.addCustomMessageHandler('b_focus_p',
     function(data) {
       var chart = get_b_boardChart(data.id);
@@ -73,7 +73,7 @@ if (HTMLWidgets.shinyMode) {
         chart.focus(data.series);
       }
   });
-  
+
   Shiny.addCustomMessageHandler('b_transform_p',
     function(data) {
       var chart = get_b_boardChart(data.id);
@@ -82,7 +82,7 @@ if (HTMLWidgets.shinyMode) {
         chart.transform(data.params.to, data.params.serie);
       }
   });
-  
+
   Shiny.addCustomMessageHandler('b_stack_p',
     function(data) {
       var chart = get_b_boardChart(data.id);
@@ -91,7 +91,7 @@ if (HTMLWidgets.shinyMode) {
         chart.groups(data.serie);
       }
   });
-  
+
   Shiny.addCustomMessageHandler('b_region_p',
     function(data) {
       var chart = get_b_boardChart(data.id);
@@ -100,7 +100,7 @@ if (HTMLWidgets.shinyMode) {
         chart.regions(data.opts);
       }
   });
-  
+
   Shiny.addCustomMessageHandler('b_add_region_p',
     function(data) {
       var chart = get_b_boardChart(data.id);
@@ -109,7 +109,7 @@ if (HTMLWidgets.shinyMode) {
         chart.regions.add(data.opts);
       }
   });
-  
+
   Shiny.addCustomMessageHandler('b_defocus_p',
     function(data) {
       var chart = get_b_boardChart(data.id);
@@ -118,13 +118,13 @@ if (HTMLWidgets.shinyMode) {
         chart.defocus(data.series);
       }
   });
-  
+
   Shiny.addCustomMessageHandler('b_flow_p',
     function(data) {
       var chart = get_b_boardChart(data.id);
       if (typeof chart != 'undefined') {
         // chart.unload();
-        chart.flow(data.data);
+        chart.flow(data.opts);
       }
   });
 }
