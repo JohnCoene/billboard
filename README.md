@@ -63,13 +63,16 @@ Features Shiny proxies; functions ending in `_p`.
 
 Proxies:
 
-* `b_zoom_p`
-* `b_focus_p`
-* `b_transform_p`
-* `b_stack_p`
-* `b_region_p`
-* `b_add_region_p`
-* `b_flow_p`
+* `billboardProxy` - Create billboard proxy for SHiny
+* `b_zoom_p` - Zoom proxy
+* `b_focus_p` - Foxus proxy
+* `b_defocus_p` - Unfocus proxy
+* `b_transform_p` - Transform chart proxy
+* `b_stack_p` - Stack proxy
+* `b_region_p` - Customise regions proxy
+* `b_add_region_p` - Add region proxy
+* `b_flow_p` Add rows 
+* `b_load_p` Add columns
 
 #### Basic Example
 
