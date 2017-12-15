@@ -198,6 +198,7 @@ b_xtick <- function(p, centered = TRUE, count = NULL, culling = NULL, fit = TRUE
 #' Customise Y axis ticks.
 #'
 #' @inheritParams p
+#' @inheritParams three_dots
 #' @param axis target axis.
 #' @param count set to count.
 #' @param outer set to position outside chart.
@@ -211,9 +212,9 @@ b_xtick <- function(p, centered = TRUE, count = NULL, culling = NULL, fit = TRUE
 #'   b_ytick("y2", outer = FALSE)
 #'
 #' @export
-b_ytick <- function(p, axis = "y", count = NULL, outer = TRUE){
+b_ytick <- function(p, axis = "y", count = NULL, outer = TRUE, ...){
 
-  opts <- list()
+  opts <- list(...)
   opts$outer <- outer
   if(!is.null(count)) opts$count <- count
 

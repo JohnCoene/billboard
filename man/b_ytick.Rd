@@ -4,7 +4,7 @@
 \alias{b_ytick}
 \title{Customise Y axis ticks}
 \usage{
-b_ytick(p, axis = "y", count = NULL, outer = TRUE)
+b_ytick(p, axis = "y", count = NULL, outer = TRUE, ...)
 }
 \arguments{
 \item{p}{an object of class \code{billboard}.}
@@ -14,6 +14,8 @@ b_ytick(p, axis = "y", count = NULL, outer = TRUE)
 \item{count}{set to count.}
 
 \item{outer}{set to position outside chart.}
+
+\item{...}{any other parameter.}
 }
 \description{
 Customise Y axis ticks.
