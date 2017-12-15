@@ -94,6 +94,10 @@
 #'     column(
 #'       3,
 #'       actionButton("cols", "Add serie")
+#'     ),
+#'     column(
+#'       3,
+#'       actionButton("export", "Export")
 #'     )
 #'   )
 #' )
@@ -127,39 +131,44 @@
 #'
 #'   observeEvent(input$zoom, {
 #'     billboardProxy("billboard") %>%
-#'     b_zoom_p(c(0, input$zoom))
+#'       b_zoom_p(c(0, input$zoom))
 #'   })
 #'
 #'   observeEvent(input$transform, {
 #'     billboardProxy("billboard") %>%
-#'     b_transform_p(input$transform, "x")
+#'       b_transform_p(input$transform, "x")
 #'   })
 #'
 #'   observeEvent(input$focus, {
 #'     billboardProxy("billboard") %>%
-#'     b_focus_p(list("x", input$filter))
+#'       b_focus_p(list("x", input$filter))
 #'   })
 #'
 #'   observeEvent(input$stack, {
 #'     billboardProxy("billboard") %>%
-#'     b_stack_p(list("x", input$stack))
+#'       b_stack_p(list("x", input$stack))
 #'   })
 #'
 #'   observeEvent(input$region, {
 #'     if(isTRUE(input$region)){
 #'       billboardProxy("billboard") %>%
-#'       b_add_region_p(axis = "x", start = 1, end = 40)
+#'         b_add_region_p(axis = "x", start = 1, end = 40)
 #'     }
 #'   })
 #'
 #'   observeEvent(input$add, {
 #'     billboardProxy("billboard") %>%
-#'     b_flow_p(df(), names(df()))
+#'       b_flow_p(df(), names(df()))
 #'   })
 #'
 #'   observeEvent(input$cols, {
 #'     billboardProxy("billboard") %>%
-#'     b_load_p(random_data(), names(random_data()))
+#'       b_load_p(random_data(), names(random_data()))
+#'   })
+#'   
+#'   observeEvent(input$export, {
+#'     billboardProxy("billboard") %>%
+#'       b_export_p()
 #'   })
 #' }
 #'
@@ -326,5 +335,16 @@ b_load_p <- function(proxy, data, series, unload = NULL){
 
   proxy$session$sendCustomMessage("b_load_p", msg)
 
+  return(proxy)
+}
+
+#' @rdname proxies
+#' @export
+b_export_p <- function(proxy){
+  
+  data <- list(id = proxy$id, opts = NULL)
+  
+  proxy$session$sendCustomMessage("b_export_p", data)
+  
   return(proxy)
 }

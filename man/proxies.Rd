@@ -10,6 +10,7 @@
 \alias{b_add_region_p}
 \alias{b_flow_p}
 \alias{b_load_p}
+\alias{b_export_p}
 \title{billboard proxies}
 \usage{
 b_zoom_p(proxy, domain)
@@ -29,6 +30,8 @@ b_add_region_p(proxy, axis, start, end, class = NULL)
 b_flow_p(proxy, data, series, x = NULL)
 
 b_load_p(proxy, data, series, unload = NULL)
+
+b_export_p(proxy)
 }
 \arguments{
 \item{proxy}{an object of class \code{billboardProxy} as returned by \code{\link{billboardProxy}}.}
@@ -136,6 +139,10 @@ ui <- fluidPage(
     column(
       3,
       actionButton("cols", "Add serie")
+    ),
+    column(
+      3,
+      actionButton("export", "Export")
     )
   )
 )
@@ -169,39 +176,44 @@ server <- function(input, output){
 
   observeEvent(input$zoom, {
     billboardProxy("billboard") \%>\%
-    b_zoom_p(c(0, input$zoom))
+      b_zoom_p(c(0, input$zoom))
   })
 
   observeEvent(input$transform, {
     billboardProxy("billboard") \%>\%
-    b_transform_p(input$transform, "x")
+      b_transform_p(input$transform, "x")
   })
 
   observeEvent(input$focus, {
     billboardProxy("billboard") \%>\%
-    b_focus_p(list("x", input$filter))
+      b_focus_p(list("x", input$filter))
   })
 
   observeEvent(input$stack, {
     billboardProxy("billboard") \%>\%
-    b_stack_p(list("x", input$stack))
+      b_stack_p(list("x", input$stack))
   })
 
   observeEvent(input$region, {
     if(isTRUE(input$region)){
       billboardProxy("billboard") \%>\%
-      b_add_region_p(axis = "x", start = 1, end = 40)
+        b_add_region_p(axis = "x", start = 1, end = 40)
     }
   })
 
   observeEvent(input$add, {
     billboardProxy("billboard") \%>\%
-    b_flow_p(df(), names(df()))
+      b_flow_p(df(), names(df()))
   })
 
   observeEvent(input$cols, {
     billboardProxy("billboard") \%>\%
-    b_load_p(random_data(), names(random_data()))
+      b_load_p(random_data(), names(random_data()))
+  })
+  
+  observeEvent(input$export, {
+    billboardProxy("billboard") \%>\%
+      b_export_p()
   })
 }
 

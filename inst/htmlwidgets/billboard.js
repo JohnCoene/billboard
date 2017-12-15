@@ -136,4 +136,13 @@ if (HTMLWidgets.shinyMode) {
         chart.load(data.opts);
       }
   });
+  
+  Shiny.addCustomMessageHandler('b_export_p',
+    function(data) {
+      var chart = get_b_boardChart(data.id);
+      if (typeof chart != 'undefined') {
+        // chart.unload();
+        chart.export();
+      }
+  });
 }
