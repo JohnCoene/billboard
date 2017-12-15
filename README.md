@@ -6,6 +6,14 @@
 
 ![Customise all the things](billboard.png)
 
+
+* [Chart types](#chart-types)
+* [Installation](#installation)
+* [Examples](#examples)
+* [Proxies](#proxies)
+    * [Basic Example](#basic-example)
+* [Functions](#functions)
+
 ## Installation
 
 ``` r
@@ -15,7 +23,19 @@ devtools::install_github("JohnCoene/billboard")
 
 ## Chart types
 
-## Example
+* line
+* spline
+* bar
+* scatter
+* step
+* area
+* area step
+* area spline
+* pie
+* donut
+* gauge
+
+## Examples
 
 Includes but is not limited to:
 
@@ -51,7 +71,7 @@ Proxies:
 * `b_add_region_p`
 * `b_flow_p`
 
-### Basic Example
+#### Basic Example
 
 See proxy documentation for more details `?b_flow_p`
 
@@ -91,47 +111,58 @@ shinyApp(
 
 ![Customise all the things](FOO.png)
 
-* `b_area`
-* `b_area_spline`  
-* `b_bar`
-* `b_board`
-* `b_color`
-* `b_color_brewer`
-* `b_donut`
-* `b_gauge`
-* `b_grid`
-* `b_grid_line`
-* `billboardOutput`
-* `b_inferno`
-* `b_inter`
-* `b_labels`
-* `b_legend` 
-* `b_line` 
-* `b_magma`
-* `b_pad`
-* `b_pie`
-* `b_plasma`
-* `b_region`
-* `b_resize` 
-* `b_rotate`
-* `b_scatter`
-* `b_size`
-* `b_spline` 
-* `b_step`
-* `b_step_area`  
-* `b_subchart`
-* `b_svg`
-* `b_title`
-* `b_tooltip`
-* `b_trans`
-* `b_viridis`
-* `b_xaxis`
-* `b_xgrid` 
-* `b_xlabel`
-* `b_xtick` 
-* `b_yaxis`
-* `b_ygrid`
-* `b_ylabel`
-* `b_ytick`
-* `b_zoom`
-* `renderBillboard`
+* `b_area` - Add an area chart
+* `b_area_spline` - Add an area spline chart
+* `b_bar` - Add a bar chart
+* `b_board` - Initialise
+* `b_color` - customise colors
+* `b_color_brewer` - Add an area chart
+* `b_donut` - Add a donut chart
+* `b_gauge` - Add a gauge chart
+* `b_grid` - Customise the grid
+* `b_grid_line` - Add a grid line
+* `billboardOutput` - billboard output for Shiny
+* `b_color_inferno` - Inferno color palette
+* `b_inter` - Customise interactivity
+* `b_labels` - Add labels
+* `b_legend` - Customise legend
+* `b_line` - Add a line chart
+* `b_color_magma` - Magma color palette
+* `b_pad` - Adjust padding
+* `b_pie` - Add a pie chart
+* `b_color_plasma` - Plama color palette
+* `b_region` - Add regions
+* `b_resize` - Change auto resize
+* `b_rotate` - Rotate chart
+* `b_scatter` - Add a scatter plot
+* `b_size` - Change svg size
+* `b_spline` - Add a spline chart
+* `b_step` - Add a step chart
+* `b_step_area` - Add a step area chart
+* `b_subchart` - Add a subchart
+* `b_svg` - Customise svg
+* `b_title` - Add a chart title
+* `b_tooltip` - Customise tooltip
+* `b_trans` - Customise transitions
+* `b_color_viridis` - Viridis color palette
+* `b_xaxis` - Customise x axis
+* `b_xgrid` - Customise x grid
+* `b_xlabel` - Add x label
+* `b_xtick` - Customise x ticks
+* `b_yaxis` - Customise y axis
+* `b_ygrid` - Customise y grid
+* `b_ylabel` - Customise y label
+* `b_ytick` - Customise y ticks
+* `b_zoom` - Allow zoom
+* `renderBillboard` - Render billboard for Shiny
+* Proxies
+  * `billboardProxy` - Create billboard proxy for SHiny
+  * `b_zoom_p` - Zoom proxy
+  * `b_focus_p` - Foxus proxy
+  * `b_defocus_p` - Unfocus proxy
+  * `b_transform_p` - Transform chart proxy
+  * `b_stack_p` - Stack proxy
+  * `b_region_p` - Customise regions proxy
+  * `b_add_region_p` - Add region proxy
+  * `b_flow_p` Add rows 
+  * `b_load_p` Add columns

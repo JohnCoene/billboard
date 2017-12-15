@@ -1,4 +1,6 @@
-#' Zoom
+#' billboard proxies
+#' 
+#' Use proxies with shiny.
 #'
 #' @param proxy an object of class \code{billboardProxy} as returned by \code{\link{billboardProxy}}.
 #' @param domain domain to zoom to.

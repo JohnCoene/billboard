@@ -10,7 +10,7 @@
 \alias{b_add_region_p}
 \alias{b_flow_p}
 \alias{b_load_p}
-\title{Zoom}
+\title{billboard proxies}
 \usage{
 b_zoom_p(proxy, domain)
 
@@ -52,7 +52,7 @@ b_load_p(proxy, data, series, unload = NULL)
 \item{unload}{series to unload.}
 }
 \description{
-Zoom
+Use proxies with shiny.
 }
 \section{Proxies}{
 
