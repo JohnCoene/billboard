@@ -11,7 +11,6 @@
 * [Installation](#installation)
 * [Examples](#examples)
 * [Proxies](#proxies)
-    * [Basic Example](#basic-example)
 * [Functions](#functions)
 
 ## Installation
@@ -63,7 +62,7 @@ Features Shiny proxies; functions ending in `_p`.
 
 Proxies:
 
-* `billboardProxy` - Create billboard proxy for SHiny
+* `billboardProxy` - Create billboard proxy for Shiny
 * `b_zoom_p` - Zoom proxy
 * `b_focus_p` - Foxus proxy
 * `b_defocus_p` - Unfocus proxy
@@ -71,12 +70,14 @@ Proxies:
 * `b_stack_p` - Stack proxy
 * `b_region_p` - Customise regions proxy
 * `b_add_region_p` - Add region proxy
-* `b_flow_p` Add rows 
-* `b_load_p` Add columns
+* `b_flow_p` - Add rows 
+* `b_load_p` - Add columns
 
-#### Basic Example
+**Basic Example**
 
 See proxy documentation for more details `?b_flow_p`
+
+#### [Demo](http://shiny.john-coene.com/billboard)
 
 ```r
 libary(shiny)
