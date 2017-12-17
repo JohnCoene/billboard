@@ -6,6 +6,7 @@
 
 ![Customise all the things](billboard.png)
 
+#### Check the [Website](http://john-coene.com/htmlwidgets/billboard/)
 
 * [Chart types](#chart-types)
 * [Installation](#installation)
