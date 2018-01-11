@@ -17,17 +17,12 @@
 #'
 #' @export
 b_board <- function(data, x, width = "100%", height = NULL, elementId = NULL) {
-
-  if(!missing(data)){
-    assign("data", data, envir = data_env)
-    if(!missing(x)){
-      xp <- eval(substitute(x), data)
-      assign("x", xp, envir = data_env)
-    }
-  }
-
+  
+  if(!missing(x))
+    xp <- eval(substitute(x), data)
+    
   # forward options using x
-  x = list(
+  x <- list(
     options = list(
       data = list(
         columns = list(),
@@ -36,31 +31,35 @@ b_board <- function(data, x, width = "100%", height = NULL, elementId = NULL) {
       )
     )
   )
-
-  if (check_cat()) {
-   x$options$axis <- list(
-     x = list(
-       type = get_cat(),
-       categories = cat_x()
-     )
-   )
-  }
-
-  if(exists("xp")){
-
-    x$options$data$x <- "b_xAxIs"
-    if(check_time()){
-      x$options$axis$x$type <- "timeseries"
-      x$options$axis$x$localtime <- FALSE
-      x$options$data$xFormat <- get_format()
-      x$options$axis$x$tick <- list(
-        format = get_format()
-      )
+  
+  if(!missing(data)){
+    x$dataOrig <- data
+    if(exists("xp")){
+      x$xOrig <- xp
+      
+      if (check_cat(xp)) {
+        x$options$axis <- list(
+          x = list(
+            type = get_cat(xp),
+            categories = cat_x(xp)
+          )
+        )
+      }
+      
+      x$options$data$x <- "b_xAxIs"
+      if(check_time(xp)){
+        x$options$axis$x$type <- "timeseries"
+        x$options$axis$x$localtime <- FALSE
+        x$options$data$xFormat <- get_format(xp)
+        x$options$axis$x$tick <- list(
+          format = get_format(xp)
+        )
+      }
+      
+      x$options$data$columns[[1]] <- c("b_xAxIs", as.character(xp))
     }
-
-    x$options$data$columns[[1]] <- c("b_xAxIs", as.character(xp))
   }
-
+  
   # create widget
   htmlwidgets::createWidget(
     name = 'billboard',

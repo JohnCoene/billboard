@@ -1,5 +1,4 @@
-get_cat <- function(){
-  x <- tryCatch(get("x", envir = data_env), error = function(e) e)
+get_cat <- function(x){
 
   return <- "value"
 
@@ -14,8 +13,7 @@ get_cat <- function(){
   return
 }
 
-get_format <- function(){
-  x <- tryCatch(get("x", envir = data_env), error = function(e) e)
+get_format <- function(x){
 
   format <- NULL
 
@@ -27,22 +25,20 @@ get_format <- function(){
       x <- as.POSIXct(x, format = "%Y-%m-%d %H:%M:%S")
       format <- "%Y-%m-%d %H:%M:%S"
     }
-    assign("x", x, envir = data_env)
   }
 
   format
 }
 
-check_cat <- function(){
-  ifelse(get_cat() == "category", TRUE, FALSE)
+check_cat <- function(x){
+  ifelse(get_cat(x) == "category", TRUE, FALSE)
 }
 
-check_time <- function(){
-  ifelse(get_cat() == "timeseries", TRUE, FALSE)
+check_time <- function(x){
+  ifelse(get_cat(x) == "timeseries", TRUE, FALSE)
 }
 
-cat_x <- function(){
-  x <- get("x", envir = data_env)
+cat_x <- function(x){
   x <- unique(x)
   as.list(x)
 }
@@ -61,8 +57,7 @@ set_axes <- function(serie, name = NULL, which){
   axis
 }
 
-col_dat <- function(serie, name = NULL){
-  data <- get("data", envir = data_env)
+col_dat <- function(serie, name = NULL, data){
 
   if(is.null(name)) name <- deparse(substitute(serie, parent.frame()))
 
@@ -76,9 +71,7 @@ b_stack <- function(serie, name){
   name
 }
 
-pie_dat <- function(serie){
-  data <- get("data", envir = data_env)
-  x <- get("x", envir = data_env)
+pie_dat <- function(serie, data, x){
 
   serie <- eval(substitute(serie, parent.frame()), data)
 

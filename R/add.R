@@ -25,7 +25,7 @@
 b_line <- function(p, serie, name = NULL, stack = FALSE, axis = "y", connect = FALSE){
 
   if(!axis %in% c("y", "y2")) stop("axis must be y or y2", call. = FALSE)
-  y <- col_dat(serie, name)
+  y <- col_dat(serie, name, p$x$dataOrig)
 
   p$x$options$data$type <- "line"
   p$x$options$data$types <- append(p$x$options$data$types, get_type(serie, name, type = "line"))
@@ -66,7 +66,7 @@ b_line <- function(p, serie, name = NULL, stack = FALSE, axis = "y", connect = F
 b_bar <- function(p, serie, name = NULL, stack = FALSE, axis = "y", width = list(), zerobased = TRUE){
 
   if(!axis %in% c("y", "y2")) stop("axis must be y or y2", call. = FALSE)
-  y <- col_dat(serie, name)
+  y <- col_dat(serie, name, p$x$dataOrig)
 
   p$x$options$data$type <- "bar"
   p$x$options$data$types <- append(p$x$options$data$types, get_type(serie, name, type = "bar"))
@@ -106,7 +106,7 @@ b_bar <- function(p, serie, name = NULL, stack = FALSE, axis = "y", width = list
 b_spline <- function(p, serie, name = NULL, stack = FALSE, axis = "y"){
 
   if(!axis %in% c("y", "y2")) stop("axis must be y or y2", call. = FALSE)
-  y <- col_dat(serie, name)
+  y <- col_dat(serie, name, p$x$dataOrig)
 
   p$x$options$data$type <- "spline"
   p$x$options$data$types <- append(p$x$options$data$types, get_type(serie, name, type = "spline"))
@@ -143,7 +143,7 @@ b_spline <- function(p, serie, name = NULL, stack = FALSE, axis = "y"){
 b_step <- function(p, serie, name = NULL, stack = FALSE, axis = "y"){
 
   if(!axis %in% c("y", "y2")) stop("axis must be y or y2", call. = FALSE)
-  y <- col_dat(serie, name)
+  y <- col_dat(serie, name, p$x$dataOrig)
 
   p$x$options$data$type <- "step"
   p$x$options$data$types <- append(p$x$options$data$types, get_type(serie, name, type = "step"))
@@ -182,7 +182,7 @@ b_step <- function(p, serie, name = NULL, stack = FALSE, axis = "y"){
 b_step_area <- function(p, serie, name = NULL, stack = FALSE, axis = "y", zerobased = TRUE, above = FALSE){
 
   if(!axis %in% c("y", "y2")) stop("axis must be y or y2", call. = FALSE)
-  y <- col_dat(serie, name)
+  y <- col_dat(serie, name, p$x$dataOrig)
 
   p$x$options$data$type <- "area-step"
   p$x$options$data$types <- append(p$x$options$data$types, get_type(serie, name, type = "area-step"))
@@ -223,7 +223,7 @@ b_step_area <- function(p, serie, name = NULL, stack = FALSE, axis = "y", zeroba
 b_area <- function(p, serie, name = NULL, stack = FALSE, axis = "y", zerobased = TRUE, above = FALSE){
 
   if(!axis %in% c("y", "y2")) stop("axis must be y or y2", call. = FALSE)
-  y <- col_dat(serie, name)
+  y <- col_dat(serie, name, p$x$dataOrig)
 
   p$x$options$data$type <- "area"
   p$x$options$data$types <- append(p$x$options$data$types, get_type(serie, name, type = "area"))
@@ -264,7 +264,7 @@ b_area <- function(p, serie, name = NULL, stack = FALSE, axis = "y", zerobased =
 b_area_spline <- function(p, serie, name = NULL, stack = FALSE, axis = "y"){
 
   if(!axis %in% c("y", "y2")) stop("axis must be y or y2", call. = FALSE)
-  y <- col_dat(serie, name)
+  y <- col_dat(serie, name, p$x$dataOrig)
 
   p$x$options$data$type <- "area-spline"
   p$x$options$data$types <- append(p$x$options$data$types, get_type(serie, name, type = "area-spline"))
@@ -302,7 +302,7 @@ b_area_spline <- function(p, serie, name = NULL, stack = FALSE, axis = "y"){
 b_scatter <- function(p, serie, name = NULL, stack = FALSE, axis = "y", r = 2.5){
 
   if(!axis %in% c("y", "y2")) stop("axis must be y or y2", call. = FALSE)
-  y <- col_dat(serie, name)
+  y <- col_dat(serie, name, p$x$dataOrig)
 
   p$x$options$data$type <- "scatter"
   p$x$options$data$types <- append(p$x$options$data$types, get_type(serie, name, type = "scatter"))
@@ -337,7 +337,7 @@ b_scatter <- function(p, serie, name = NULL, stack = FALSE, axis = "y", r = 2.5)
 #'
 #' @export
 b_pie <- function(p, serie, label = list(), expand = TRUE, pad.angle = 0){
-  y <- pie_dat(serie)
+  y <- pie_dat(serie, p$x$dataOrig, p$x$xOrig)
 
   p$x$options$data$type <- "pie"
   p$x$options$data$types <- NULL
@@ -369,7 +369,7 @@ b_pie <- function(p, serie, label = list(), expand = TRUE, pad.angle = 0){
 #'
 #' @export
 b_donut <- function(p, serie, label = list(), expand = TRUE, width = NULL, title = "", pad.angle = 0){
-  y <- pie_dat(serie)
+  y <- pie_dat(serie, p$x$dataOrig, p$x$xOrig)
 
   p$x$options$data$type <- "donut"
   p$x$options$data$types <- NULL
