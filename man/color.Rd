@@ -42,11 +42,11 @@ Customise colors.
 
 
 \describe{
-  \item{\code{b_color}}{Manual.}
-  \item{\code{b_color_brewer}}{From the \link{RColorBrewer} package.}
-  \item{\code{b_color_viridis}, \code{b_color_magma}, \code{b_color_plasma}}{From the 
-  \link{viridis} package.}
-  \item{\code{b_color_wes}}{From the \link{wesanderson} package}
+  \item{\code{b_color}}{Manual list your colors of choice.}
+  \item{\code{b_color_brewer}}{Use palettes from the \link{RColorBrewer} package.}
+  \item{\code{b_color_viridis}, \code{b_color_magma}, \code{b_color_plasma}}{Use palettes 
+  from the \link{viridis} package.}
+  \item{\code{b_color_wes}}{Use palettes from the \link{wesanderson} package}
 }
 }
 
@@ -74,6 +74,6 @@ p \%>\%
   b_color_plasma()
   
 p \%>\% 
-  b_color_wes("BottleRocket1")
+  b_color_wes("Zissou1")
 
 }

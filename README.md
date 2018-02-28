@@ -150,6 +150,7 @@ shinyApp(
 * `b_tooltip` - Customise tooltip
 * `b_trans` - Customise transitions
 * `b_color_viridis` - Viridis color palette
+* `b_color_wes` - Wes Anderson color palettes
 * `b_xaxis` - Customise x axis
 * `b_xgrid` - Customise x grid
 * `b_xlabel` - Add x label
