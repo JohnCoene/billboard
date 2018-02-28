@@ -7,6 +7,16 @@
 #' @param colors colors to use.
 #' @param pal \code{RColorBrewer} color palette.
 #' @param n number of colors.
+#' 
+#' @section Colors:
+#' 
+#' \describe{
+#'   \item{\code{b_color}}{Manual.}
+#'   \item{\code{b_color_brewer}}{From the \link{RColorBrewer} package.}
+#'   \item{\code{b_color_viridis}, \code{b_color_magma}, \code{b_color_plasma}}{From the 
+#'   \link{viridis} package.}
+#'   \item{\code{b_color_wes}}{From the \link{wesanderson} package}
+#' }
 #'
 #' @examples
 #' mtcars %>%
@@ -30,6 +40,9 @@
 #'
 #' p %>%
 #'   b_color_plasma()
+#'   
+#' p %>% 
+#'   b_color_wes("Zissou1")
 #'
 #' @importFrom grDevices colorRampPalette
 #'
@@ -86,4 +99,13 @@ b_color_inferno <- function(p, ...){
 b_color_magma <- function(p, ...){
 
   viridis_colors(p, "A", ...)
+}
+
+#' @rdname color
+#' @export
+b_color_wes <- function(p, pal, ...){
+  
+  p %>%
+    b_color(wesanderson::wes_palette(pal, ...))
+  
 }

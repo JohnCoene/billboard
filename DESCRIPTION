@@ -12,6 +12,7 @@ Imports:
   RColorBrewer,
   viridis,
   magrittr,
-  methods
+  methods,
+  wesanderson
 RoxygenNote: 6.0.1
 Suggests: dplyr

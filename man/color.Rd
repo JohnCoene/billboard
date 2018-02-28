@@ -7,6 +7,7 @@
 \alias{b_color_plasma}
 \alias{b_color_inferno}
 \alias{b_color_magma}
+\alias{b_color_wes}
 \title{Customise colors}
 \usage{
 b_color(p, colors, ...)
@@ -20,6 +21,8 @@ b_color_plasma(p, ...)
 b_color_inferno(p, ...)
 
 b_color_magma(p, ...)
+
+b_color_wes(p, pal, ...)
 }
 \arguments{
 \item{p}{an object of class \code{billboard}.}
@@ -35,6 +38,18 @@ b_color_magma(p, ...)
 \description{
 Customise colors.
 }
+\section{Colors}{
+
+
+\describe{
+  \item{\code{b_color}}{Manual.}
+  \item{\code{b_color_brewer}}{From the \link{RColorBrewer} package.}
+  \item{\code{b_color_viridis}, \code{b_color_magma}, \code{b_color_plasma}}{From the 
+  \link{viridis} package.}
+  \item{\code{b_color_wes}}{From the \link{wesanderson} package}
+}
+}
+
 \examples{
 mtcars \%>\%
   b_board() \%>\%
@@ -57,5 +72,8 @@ p \%>\%
 
 p \%>\%
   b_color_plasma()
+  
+p \%>\% 
+  b_color_wes("BottleRocket1")
 
 }
