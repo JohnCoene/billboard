@@ -121,13 +121,11 @@ shinyApp(
 * `b_bar` - Add a bar chart
 * `b_board` - Initialise
 * `b_color` - customise colors
-* `b_color_brewer` - Add an area chart
 * `b_donut` - Add a donut chart
 * `b_gauge` - Add a gauge chart
 * `b_grid` - Customise the grid
 * `b_grid_line` - Add a grid line
 * `billboardOutput` - billboard output for Shiny
-* `b_color_inferno` - Inferno color palette
 * `b_inter` - Customise interactivity
 * `b_labels` - Add labels
 * `b_legend` - Customise legend
@@ -149,8 +147,10 @@ shinyApp(
 * `b_title` - Add a chart title
 * `b_tooltip` - Customise tooltip
 * `b_trans` - Customise transitions
-* `b_color_viridis` - Viridis color palette
-* `b_color_wes` - Wes Anderson color palettes
+* `b_color_brewer` - Use [RColorBrewer](https://cran.r-project.org/web/packages/RColorBrewer/index.html) palettes
+* `b_color_viridis` - [Viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) color palette
+* `b_color_wes` - [Wes Anderson](https://github.com/karthik/wesanderson) color palettes
+* `b_color_ghibli` - [Ghibli](https://github.com/ewenme/ghibli) palettes
 * `b_xaxis` - Customise x axis
 * `b_xgrid` - Customise x grid
 * `b_xlabel` - Add x label
