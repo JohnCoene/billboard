@@ -8,13 +8,14 @@
 \alias{b_color_inferno}
 \alias{b_color_magma}
 \alias{b_color_wes}
+\alias{b_color_ghibli}
 \title{Customise colors}
 \usage{
 b_color(p, colors, ...)
 
 b_color_brewer(p, pal, n = 8, ...)
 
-b_color_viridis(p, ...)
+b_color_viridis(p, pal = "D", ...)
 
 b_color_plasma(p, ...)
 
@@ -23,6 +24,8 @@ b_color_inferno(p, ...)
 b_color_magma(p, ...)
 
 b_color_wes(p, pal, ...)
+
+b_color_ghibli(p, pal, ...)
 }
 \arguments{
 \item{p}{an object of class \code{billboard}.}
@@ -43,10 +46,10 @@ Customise colors.
 
 \describe{
   \item{\code{b_color}}{Manual list your colors of choice.}
-  \item{\code{b_color_brewer}}{Use palettes from the \link{RColorBrewer} package.}
-  \item{\code{b_color_viridis}, \code{b_color_magma}, \code{b_color_plasma}}{Use palettes 
-  from the \link{viridis} package.}
-  \item{\code{b_color_wes}}{Use palettes from the \link{wesanderson} package}
+  \item{\code{b_color_brewer}}{Use palettes from the \link[RColorBrewer]{brewer.pal} package.}
+  \item{\code{b_color_viridis}}{Use palettes from the \link[viridis]{viridis} package.}
+  \item{\code{b_color_wes}}{Use palettes from the \link[wesanderson]{wes_palette} package}
+  \item{\code{b_color_ghibli}}{Use palettes from the \link[ghibli]{ghibli_palette} package}
 }
 }
 
@@ -56,7 +59,7 @@ mtcars \%>\%
   b_area(qsec) \%>\%
   b_spline(wt) \%>\%
   b_bar(disp, axis = "y2") \%>\%
-  b_step(cyl) -> p
+  b_step_area(cyl) -> p
 
 p \%>\%
   b_color(c("red", "blue", "yellow", "orange"))
@@ -66,14 +69,11 @@ p \%>\%
 
 p \%>\%
   b_color_viridis()
-
-p \%>\%
-  b_color_magma()
-
-p \%>\%
-  b_color_plasma()
   
 p \%>\% 
-  b_color_wes("Zissou1")
+  b_color_wes("Zissou")
+  
+p \%>\% 
+  b_color_ghibli("PonyoMedium")
 
 }

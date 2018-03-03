@@ -12,10 +12,10 @@
 #' 
 #' \describe{
 #'   \item{\code{b_color}}{Manual list your colors of choice.}
-#'   \item{\code{b_color_brewer}}{Use palettes from the \link{RColorBrewer} package.}
-#'   \item{\code{b_color_viridis}, \code{b_color_magma}, \code{b_color_plasma}}{Use palettes 
-#'   from the \link{viridis} package.}
-#'   \item{\code{b_color_wes}}{Use palettes from the \link{wesanderson} package}
+#'   \item{\code{b_color_brewer}}{Use palettes from the \link[RColorBrewer]{brewer.pal} package.}
+#'   \item{\code{b_color_viridis}}{Use palettes from the \link[viridis]{viridis} package.}
+#'   \item{\code{b_color_wes}}{Use palettes from the \link[wesanderson]{wes_palette} package}
+#'   \item{\code{b_color_ghibli}}{Use palettes from the \link[ghibli]{ghibli_palette} package}
 #' }
 #'
 #' @examples
@@ -24,7 +24,7 @@
 #'   b_area(qsec) %>%
 #'   b_spline(wt) %>%
 #'   b_bar(disp, axis = "y2") %>%
-#'   b_step(cyl) -> p
+#'   b_step_area(cyl) -> p
 #'
 #' p %>%
 #'   b_color(c("red", "blue", "yellow", "orange"))
@@ -34,15 +34,12 @@
 #'
 #' p %>%
 #'   b_color_viridis()
-#'
-#' p %>%
-#'   b_color_magma()
-#'
-#' p %>%
-#'   b_color_plasma()
 #'   
 #' p %>% 
-#'   b_color_wes("Zissou1")
+#'   b_color_wes("Zissou")
+#'   
+#' p %>% 
+#'   b_color_ghibli("PonyoMedium")
 #'
 #' @importFrom grDevices colorRampPalette
 #'
@@ -75,14 +72,16 @@ b_color_brewer <- function(p, pal, n = 8, ...){
 
 #' @rdname color
 #' @export
-b_color_viridis <- function(p, ...){
+b_color_viridis <- function(p, pal = "D", ...){
 
-  viridis_colors(p, "D", ...)
+  viridis_colors(p, pal, ...)
 }
 
 #' @rdname color
 #' @export
 b_color_plasma <- function(p, ...){
+  
+  .Deprecated("b_color_viridis")
 
   viridis_colors(p, "C", ...)
 }
@@ -90,6 +89,8 @@ b_color_plasma <- function(p, ...){
 #' @rdname color
 #' @export
 b_color_inferno <- function(p, ...){
+  
+  .Deprecated("b_color_viridis")
 
   viridis_colors(p, "B", ...)
 }
@@ -97,6 +98,8 @@ b_color_inferno <- function(p, ...){
 #' @rdname color
 #' @export
 b_color_magma <- function(p, ...){
+  
+  .Deprecated("b_color_viridis")
 
   viridis_colors(p, "A", ...)
 }
@@ -105,7 +108,22 @@ b_color_magma <- function(p, ...){
 #' @export
 b_color_wes <- function(p, pal, ...){
   
+  if(missing(pal))
+    stop("must pass pal", call. = FALSE)
+  
   p %>%
     b_color(wesanderson::wes_palette(pal, ...))
+  
+}
+
+#' @rdname color
+#' @export
+b_color_ghibli <- function(p, pal, ...){
+  
+  if(missing(pal))
+    stop("must pass pal", call. = FALSE)
+  
+  p %>%
+    b_color(ghibli::ghibli_palette(pal, ...))
   
 }

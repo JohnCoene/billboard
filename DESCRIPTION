@@ -11,6 +11,7 @@ Imports:
   htmlwidgets,
   RColorBrewer,
   viridis,
+  ghibli,
   magrittr,
   methods,
   wesanderson
