@@ -5,16 +5,16 @@ HTMLWidgets.widget({
   type: 'output',
 
   factory: function(el, width, height) {
+    
+    var chart;
 
     return {
 
       renderValue: function(x) {
-
-        if(typeof x.options.dataOrig == 'undefined'){
-          var options = x.options;
-          options.bindto = "#" + el.id;
-          chart = bb.generate(options);
-        } 
+        
+        var options = x.options;
+        options.bindto = "#" + el.id;
+        chart = bb.generate(options);
 
       },
 
