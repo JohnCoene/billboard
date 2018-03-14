@@ -6,21 +6,15 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    // TODO: define shared variables for this instance
-
-    var chart = null;
-
     return {
 
       renderValue: function(x) {
 
-        if(chart === null){
-
+        if(typeof x.options.dataOrig == 'undefined'){
           var options = x.options;
           options.bindto = "#" + el.id;
           chart = bb.generate(options);
-
-        }
+        } 
 
       },
 
