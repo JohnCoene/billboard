@@ -1,0 +1,30 @@
+url: http://billboard.john-coene.com
+
+template:
+  params:
+    bootswatch: lumen
+    ganalytics: UA-74544116-1
+
+development:
+  mode: unreleased
+
+navbar:
+  title: "echarts"
+  left:
+    - icon: fa-home
+      href: index.html
+    - text: "Reference"
+      href: "reference/"
+    - text: "Chart types"
+      href: articles/chartypes.html
+    - text: "Options"
+      href: articles/options.html
+    - text: "Shiny"
+      href: articles/shiny.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/JohnCoene/billboard
+
+authors:
+  John Coene:
+  href: http://john-coene.com

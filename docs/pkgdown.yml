@@ -1,0 +1,11 @@
+pandoc: 2.2.1
+pkgdown: 1.0.0
+pkgdown_sha: ~
+articles:
+  chartypes: chartypes.html
+  options: options.html
+  shiny: shiny.html
+urls:
+  reference: http://billboard.john-coene.com/reference
+  article: http://billboard.john-coene.com/articles
+

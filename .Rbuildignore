@@ -3,3 +3,5 @@
 ^FOO\.png$
 ^billboard\.png$
 ^\.travis\.yml$
+_pkgdown.yml
+docs

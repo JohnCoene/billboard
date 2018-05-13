@@ -1,0 +1,172 @@
+---
+title: "Shiny"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Shiny}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(billboard)
+library(dplyr)
+```
+
+`billboard` comes with handy proxies to use in Shiny.
+
+Use `billboardProxy` to initialise a proxy.
+
+* `b_zoom_p` - Zoom proxy
+* `b_focus_p` - Foxus proxy
+* `b_defocus_p` - Unfocus proxy
+* `b_transform_p` - Transform chart proxy
+* `b_stack_p` - Stack proxy
+* `b_region_p` - Customise regions proxy
+* `b_add_region_p` - Add region proxy
+* `b_flow_p` - Add rows
+* `b_load_p` - Add columns
+
+You will find a demo [here](http://shiny.john-coene.com/billboard).
+
+Example:
+
+```{r, eval=FALSE}
+library(shiny)
+library(billboard)
+
+ui <- fluidPage(
+  fluidRow(
+    column(
+    3,
+     sliderInput("zoom",
+       "Zoom on a region",
+       min = 0,
+       max = 150,
+       value = 100
+     )
+    ),
+    column(
+      2,
+     selectInput(
+       "transform",
+       "Filter:",
+       choices = c("line", "spline", "area", "area-spline", "scatter", "bar"),
+       selected = "line"
+     )
+    ),
+    column(
+      2,
+     selectInput(
+      "focus",
+       label = "Focus on data",
+       choices = c("y", "z"),
+       selected = "y"
+     )
+    ),
+    column(
+      3,
+     selectInput(
+      "stack",
+       label = "Stack",
+       choices = c("x", "y", "z"),
+       selected = "y",
+       multiple = TRUE
+     )
+    ),
+    column(
+      2,
+     checkboxInput(
+       "region", "Add region", FALSE
+     )
+   )
+  ),
+  fluidRow(
+    billboardOutput("billboard")
+  ),
+  fluidRow(
+    column(
+      3,
+     sliderInput("add",
+       "Add rows",
+       min = 0,
+       max = 100,
+       value = 0
+     )
+    ),
+    column(
+      3,
+      actionButton("cols", "Add serie")
+    )
+  )
+)
+
+server <- function(input, output){
+
+  data <- data.frame(x = runif(100, 1, 100),
+    y = runif(100, 1, 100),
+    z = runif(100, 1, 100))
+
+  df <- eventReactive(input$add, {
+    data.frame(x = runif(input$add, 10, 80),
+      y = runif(input$add, 10, 80),
+      z = runif(input$add, 10, 80))
+  })
+
+  random_data <- eventReactive(input$cols, {
+    df <- data.frame(x = runif(100, 1, 100))
+    names(df) <- paste0("col", sample(LETTERS, 1))
+    df
+  })
+
+  output$billboard <- renderBillboard({
+    data %>%
+      b_board() %>%
+      b_line(x) %>%
+      b_bar(y, stack = TRUE) %>%
+      b_area(z, stack = TRUE) %>%
+      b_zoom()
+  })
+
+  observeEvent(input$zoom, {
+    billboardProxy("billboard") %>%
+    b_zoom_p(c(0, input$zoom))
+  })
+
+  observeEvent(input$transform, {
+    billboardProxy("billboard") %>%
+    b_transform_p(input$transform, "x")
+  })
+
+  observeEvent(input$focus, {
+    billboardProxy("billboard") %>%
+    b_focus_p(list("x", input$filter))
+  })
+
+  observeEvent(input$stack, {
+    billboardProxy("billboard") %>%
+    b_stack_p(list("x", input$stack))
+  })
+
+  observeEvent(input$region, {
+    if(isTRUE(input$region)){
+      billboardProxy("billboard") %>%
+      b_add_region_p(axis = "x", start = 1, end = 40)
+    }
+  })
+
+  observeEvent(input$add, {
+    billboardProxy("billboard") %>%
+    b_flow_p(df(), names(df()))
+  })
+
+  observeEvent(input$cols, {
+    billboardProxy("billboard") %>%
+    b_load_p(random_data(), names(random_data()))
+  })
+}
+
+shinyApp(ui, server)
+```

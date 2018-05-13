@@ -1,0 +1,105 @@
+---
+title: "Options"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Options}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(billboard)
+library(dplyr)
+```
+
+`billboard` comes with countless options, they are **not** all listed here. This page merely tries to demonstrate what can be achieved with the package. 
+
+### Labels & orientation
+
+Add labels and rotate the chart and add a title.
+
+```{r}
+library(dplyr)
+
+mtcars %>% 
+  mutate(models = rownames(.)) %>% 
+  slice(1:5) %>% 
+  b_board(models) %>% 
+  b_bar(wt) %>% 
+  b_rotate() %>% 
+  b_labels() %>% 
+  b_title("Rotated chart")
+```
+
+### Legend
+
+Change the legend square size and position. Note that you can name each chart added with `name`
+
+```{r}
+mtcars %>% 
+  mutate(models = rownames(.)) %>% 
+  slice(1:5) %>% 
+  b_board(models) %>% 
+  b_bar(wt, name = "weight") %>% 
+  b_bar(drat) %>% 
+  b_legend(width = 50, height = 20, position = "inset")
+```
+
+### Empty
+
+No axis change or legend, change height.
+
+```{r}
+mtcars %>%
+  mutate(x = 1:n()) %>% 
+  b_board(x) %>% 
+  b_spline(wt) %>% 
+  b_xaxis(show = FALSE) %>% 
+  b_yaxis(show = FALSE) %>% 
+  b_size(height = 50) %>% 
+  b_legend(show = FALSE)
+```
+
+### Mark
+
+Mark lines and regions.
+
+```{r}
+mtcars %>% 
+  mutate(x = 1:n()) %>% 
+  b_board(x) %>% 
+  b_area_spline(drat, name = "Rear axle ratio") %>% 
+  b_spline(mpg, axis = "y2") %>% 
+  b_grid_line(3, "avg (maybe)", axis = "y") %>% 
+  b_region("x", 8, 12)
+```
+
+### Color
+
+Customise chart color.
+
+```{r}
+mtcars %>% 
+  mutate(x = 1:n()) %>% 
+  b_board(x) %>% 
+  b_bar(wt) %>% 
+  b_area(drat) %>% 
+  b_bar(mpg, axis = "y2") %>% 
+  b_color_brewer("Accent", 3)
+```
+
+### Subchart
+
+Add a subchart
+
+```{r}
+mtcars %>% 
+  mutate(x = 1:n()) %>% 
+  b_board(x) %>% 
+  b_bar(wt) %>% 
+  b_area(drat) %>% 
+  b_subchart()
+```

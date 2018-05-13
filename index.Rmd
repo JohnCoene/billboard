@@ -4,7 +4,17 @@
 
 [billboard.js](https://naver.github.io/billboard.js) for R.
 
-![Customise all the things](billboard.png)
+```{r, echo=FALSE}
+library(billboard)
+
+df <- data.frame(x = 1:10, w = runif(10, 0, 5), y = runif(10, 0, 5), z = runif(10, 0, 5))
+
+df %>%
+  b_board(x) %>%
+  b_area_spline(w) %>% 
+  b_area_spline(y, stack = TRUE) %>% 
+  b_area_spline(z, stack= TRUE)
+```
 
 #### Check the [Website](http://billboard.john-coene.com/)
 
@@ -16,7 +26,7 @@
 
 ## Installation
 
-``` r
+```{r, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("JohnCoene/billboard")
 ```
@@ -39,7 +49,7 @@ devtools::install_github("JohnCoene/billboard")
 
 Includes but is not limited to:
 
-```r
+```{r}
 library(billboard)
 
 mtcars %>% 
@@ -80,7 +90,7 @@ See proxy documentation for more details `?b_flow_p`
 
 #### [Demo](http://shiny.john-coene.com/billboard)
 
-```r
+```{r, eval=FALSE}
 libary(shiny)
 library(billboard)
 

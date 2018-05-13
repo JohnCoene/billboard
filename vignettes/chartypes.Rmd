@@ -1,0 +1,130 @@
+---
+title: "Chart types"
+author: "John Coene"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Chart types}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(billboard)
+library(dplyr)
+```
+
+```{r}
+# create data
+df <- data.frame(x = 1:10, w = runif(10, 0, 5), y = runif(10, 0, 5), z = runif(10, 0, 5))
+```
+
+### Bar
+
+```{r}
+df %>%
+  b_board(x) %>%
+  b_bar(w) %>% 
+  b_bar(y, stack = TRUE) %>% 
+  b_bar(z, stack= TRUE)
+```
+
+### Area
+
+```{r}
+df %>%
+  b_board(x) %>%
+  b_area(w) %>% 
+  b_area(y, stack = TRUE) %>% 
+  b_area(z, stack= TRUE)
+```
+
+### Scatter
+
+*Scatter does stack*
+
+```{r}
+df %>%
+  b_board(x) %>%
+  b_scatter(w) %>% 
+  b_scatter(y, stack = TRUE) %>% 
+  b_scatter(z, stack= TRUE)
+```
+
+### Line
+
+```{r}
+df %>%
+  b_board(x) %>%
+  b_line(w) %>%
+  b_line(y, stack = TRUE) %>% 
+  b_line(z, stack = TRUE)
+```
+
+### spline
+
+```{r}
+df %>%
+  b_board(x) %>%
+  b_spline(w) %>%
+  b_spline(y, stack = TRUE) %>% 
+  b_spline(z, stack = TRUE)
+```
+
+### Step
+
+```{r}
+df %>%
+  b_board(x) %>%
+  b_step(w) %>% 
+  b_step(y, stack = TRUE) %>% 
+  b_step(z, stack= TRUE)
+```
+
+### Area spline
+
+```{r}
+df %>%
+  b_board(x) %>%
+  b_area_spline(w) %>% 
+  b_area_spline(y, stack = TRUE) %>% 
+  b_area_spline(z, stack= TRUE)
+```
+
+### Step area
+
+```{r}
+df %>%
+  b_board(x) %>%
+  b_step_area(w) %>% 
+  b_step_area(y, stack = TRUE) %>% 
+  b_step_area(z, stack= TRUE)
+```
+
+### Pie
+
+```{r}
+mtcars %>% 
+  mutate(model = rownames(.)) %>% 
+  slice(1:10) %>% 
+  b_board(model) %>% 
+  b_pie(wt) 
+```
+
+### Donut
+
+```{r}
+mtcars %>% 
+  mutate(model = rownames(.)) %>% 
+  slice(1:10) %>% 
+  b_board(model) %>% 
+  b_donut(drat) 
+```
+
+### Gauge
+
+```{r}
+b_board() %>% 
+  b_gauge(27)
+```

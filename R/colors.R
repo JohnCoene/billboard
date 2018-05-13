@@ -36,7 +36,7 @@
 #'   b_color_viridis()
 #'   
 #' p %>% 
-#'   b_color_wes("Zissou")
+#'   b_color_wes("Zissou1")
 #'   
 #' p %>% 
 #'   b_color_ghibli("PonyoMedium")
