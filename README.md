@@ -2,6 +2,8 @@
 
 # billboard
 
+## I started this project a long time ago a much better integration of billboard.js with R has been done by [DreamRs](https://github.com/dreamRs/billboarder) I suggest you use that package instead of this one. 
+
 [billboard.js](https://naver.github.io/billboard.js) for R.
 
 ![Customise all the things](billboard.png)
