@@ -2,7 +2,7 @@
 
 # billboard
 
-## I started this project a long time ago a much better integration of billboard.js with R has been done by [DreamRs](https://github.com/dreamRs/billboarder) I suggest you use that package instead of this one. 
+## A much better integration of billboard.js with R has been done by [DreamRs](https://github.com/dreamRs/billboarder) I suggest you use that package instead. 
 
 [billboard.js](https://naver.github.io/billboard.js) for R.
 
